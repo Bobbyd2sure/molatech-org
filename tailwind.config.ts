@@ -72,45 +72,6 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
-      height: {
-        screen: "100vh",
-        "screen-small": "100svh",
-        "screen-large": "100lvh",
-        "screen-dynamic": "100dvh",
-      },
-      scale: {
-        "102": "1.02",
-      },
-      transitionDuration: {
-        "400": "400ms",
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-      },
-      transformStyle: {
-        "3d": "preserve-3d",
-      },
-      perspective: {
-        "1000": "1000px",
-      },
-      translate: {
-        "z-2": "translateZ(2px)",
-        "z-4": "translateZ(4px)",
-      },
-      rotate: {
-        "1": "1deg",
-        "2": "2deg",
-        "3": "3deg",
-      },
-      rotateX: {
-        "1": "1deg",
-        "2": "2deg",
-      },
-      rotateY: {
-        "2": "2deg",
-        "3": "3deg",
-        "5": "5deg",
-      },
     },
   },
   plugins: [require("tailwindcss-animate")],

@@ -1,121 +1,132 @@
-"use client"
-
-import { Heart, Mail, Phone, MapPin, Facebook, Instagram } from "lucide-react"
 import Link from "next/link"
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react"
+import { FloatingDock } from "@/components/ui/aceternity/floating-dock"
 
-export function Footer() {
-  const currentYear = new Date().getFullYear()
+export default function Footer() {
+  const socialLinks = [
+    {
+      title: "Facebook",
+      icon: <Facebook className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "#",
+    },
+    {
+      title: "Twitter",
+      icon: <Twitter className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "#",
+    },
+    {
+      title: "Instagram",
+      icon: <Instagram className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "#",
+    },
+    {
+      title: "LinkedIn",
+      icon: <Linkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" />,
+      href: "#",
+    },
+  ]
 
   return (
-    <footer className="bg-slate-900 text-white py-12">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
+    <footer className="w-full border-t bg-background">
+      <div className="container px-4 md:px-6 py-12">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div className="space-y-4">
-            <div className="bg-white text-slate-900 px-4 py-2 rounded font-bold text-lg inline-block">
-              KENNY
-              <br />
-              KUNMA
-            </div>
-            <p className="text-slate-300">
-              Empowering students and building futures through education, mentorship, and community support.
+            <Link href="/" className="flex items-center space-x-2">
+              <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-500 text-transparent bg-clip-text">
+                MolaTech
+              </span>
+            </Link>
+            <p className="text-sm text-muted-foreground">
+              Innovative tech solutions for businesses of all sizes. Transforming ideas into digital reality.
             </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
-            <div className="space-y-2">
-              <Link href="/" className="block text-slate-300 hover:text-white transition-colors duration-200">
-                Home
-              </Link>
-              <Link href="/about" className="block text-slate-300 hover:text-white transition-colors duration-200">
-                About Me
-              </Link>
-              <Link href="/services" className="block text-slate-300 hover:text-white transition-colors duration-200">
-                Services
-              </Link>
-              <Link href="/gallery" className="block text-slate-300 hover:text-white transition-colors duration-200">
-                Gallery
-              </Link>
-              <Link href="/blog" className="block text-slate-300 hover:text-white transition-colors duration-200">
-                Blog
-              </Link>
-              <Link href="/impact" className="block text-slate-300 hover:text-white transition-colors duration-200">
-                Impact
-              </Link>
-              <a href="#contact" className="block text-slate-300 hover:text-white transition-colors duration-200">
-                Contact
-              </a>
+            <div className="flex justify-center">
+              <FloatingDock
+                items={socialLinks}
+                desktopClassName="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-neutral-200 dark:border-neutral-800"
+              />
             </div>
           </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="font-semibold text-lg mb-4">Services</h3>
-            <div className="space-y-2 text-slate-300">
-              <p>JAMB Form Support</p>
-              <p>Financial Assistance</p>
-              <p>Mentorship Programs</p>
-              <p>Educational Resources</p>
-              <p>Career Development</p>
-            </div>
+          <div className="space-y-4">
+            <h3 className="text-base font-medium">Services</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/services/web-development" className="text-muted-foreground hover:text-foreground">
+                  Web Development
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/app-development" className="text-muted-foreground hover:text-foreground">
+                  App Development
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/website-design" className="text-muted-foreground hover:text-foreground">
+                  Website Design
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/digital-marketing" className="text-muted-foreground hover:text-foreground">
+                  Digital Marketing
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/cloud-solutions" className="text-muted-foreground hover:text-foreground">
+                  Cloud Solutions
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/cybersecurity" className="text-muted-foreground hover:text-foreground">
+                  Cybersecurity
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/training" className="text-muted-foreground hover:text-foreground">
+                  Training
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/consultancy" className="text-muted-foreground hover:text-foreground">
+                  Consultancy
+                </Link>
+              </li>
+            </ul>
           </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="font-semibold text-lg mb-4">Contact Info</h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Mail className="h-4 w-4 text-blue-400" />
-                <span className="text-slate-300">kenny@kennykunma.com</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="h-4 w-4 text-blue-400" />
-                <span className="text-slate-300">+234 (0) 123 456 7890</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-4 w-4 text-blue-400" />
-                <span className="text-slate-300">Lagos, Nigeria</span>
-              </div>
-            </div>
+          <div className="space-y-4">
+            <h3 className="text-base font-medium">Company</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/about" className="text-muted-foreground hover:text-foreground">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-muted-foreground hover:text-foreground">
+                  Contact
+                </Link>
+              </li>
+            </ul>
           </div>
-
-          {/* Social Media Links */}
-          <div>
-            <h3 className="font-semibold text-lg mb-4">Follow Kenny</h3>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Facebook className="h-4 w-4 text-blue-400" />
-                <a
-                  href="https://facebook.com/kennykunma"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-300 hover:text-white transition-colors duration-200"
-                >
-                  Facebook
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Instagram className="h-4 w-4 text-pink-400" />
-                <a
-                  href="https://instagram.com/kennykunma"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-300 hover:text-white transition-colors duration-200"
-                >
-                  Instagram
-                </a>
-              </div>
-            </div>
+          <div className="space-y-4">
+            <h3 className="text-base font-medium">Contact</h3>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-start space-x-2">
+                <MapPin className="h-5 w-5 text-muted-foreground" />
+                <span className="text-muted-foreground">123 Tech Street, Innovation City, TC 12345</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Phone className="h-5 w-5 text-muted-foreground" />
+                <span className="text-muted-foreground">(123) 456-7890</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Mail className="h-5 w-5 text-muted-foreground" />
+                <span className="text-muted-foreground">info@molatech.com</span>
+              </li>
+            </ul>
           </div>
         </div>
-
-        <div className="border-t border-slate-700 mt-8 pt-8 text-center">
-          <p className="text-slate-300 flex items-center justify-center space-x-2">
-            <span>© {currentYear} Kenny Kunma. Made with</span>
-            <Heart className="h-4 w-4 text-red-400 fill-current" />
-            <span>for education and community.</span>
+        <div className="mt-12 border-t pt-6">
+          <p className="text-center text-xs text-muted-foreground">
+            © {new Date().getFullYear()} MolaTech. All rights reserved.
           </p>
         </div>
       </div>
