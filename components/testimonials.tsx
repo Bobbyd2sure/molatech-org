@@ -23,7 +23,7 @@ export default function Testimonials() {
         "The mobile app they developed for us has received outstanding feedback from our users. The user interface is intuitive, the performance is excellent, and the features perfectly match our business needs. Highly recommended for app development projects.",
       name: "Michael Chen",
       designation: "Product Manager, InnovateCorp",
-      src: "/placeholder.svg?height=100&width=100",
+      src: https://www.pexels.com/photo/a-man-in-white-long-sleeves-using-a-laptop-7652510/?height=100&width=100",
     },
     {
       quote:

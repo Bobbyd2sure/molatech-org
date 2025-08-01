@@ -527,7 +527,7 @@ export default function FeaturedProjects() {
               size="lg"
               className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white border-0 shadow-lg group"
             >
-              <Link href="/contact">
+              <Link href="/project-showcase">
                 View All Projects
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
