@@ -16,42 +16,42 @@ export default function Testimonials() {
         "Working with MolaTech transformed our online presence completely. Their web development expertise helped us increase conversions by 40% and our customer engagement has never been higher. The team's attention to detail and commitment to excellence is truly remarkable.",
       name: "Sarah Johnson",
       designation: "CEO, TechStart Inc.",
-      src: "/placeholder.svg?height=100&width=100",
+      src: "/placeholder.svg?height=100&width=100&text=SJ",
     },
     {
       quote:
         "The mobile app they developed for us has received outstanding feedback from our users. The user interface is intuitive, the performance is excellent, and the features perfectly match our business needs. Highly recommended for app development projects.",
       name: "Michael Chen",
       designation: "Product Manager, InnovateCorp",
-      src: https://www.pexels.com/photo/a-man-in-white-long-sleeves-using-a-laptop-7652510/?height=100&width=100",
+      src: "/placeholder.svg?height=100&width=100&text=MC",
     },
     {
       quote:
         "Their cybersecurity training program significantly improved our team's awareness and reduced security incidents by 75%. The comprehensive approach and practical exercises made complex security concepts easy to understand and implement.",
       name: "David Wilson",
       designation: "CTO, SecureNet Solutions",
-      src: "/placeholder.svg?height=100&width=100",
+      src: "/placeholder.svg?height=100&width=100&text=DW",
     },
     {
       quote:
         "The digital marketing strategy they implemented for our business exceeded all expectations. Our online visibility increased dramatically, and we saw a 150% increase in qualified leads within just three months of launching the campaign.",
       name: "Emily Rodriguez",
       designation: "Marketing Director, GrowthCo",
-      src: "/placeholder.svg?height=100&width=100",
+      src: "/placeholder.svg?height=100&width=100&text=ER",
     },
     {
       quote:
         "MolaTech's cloud migration services helped us reduce our infrastructure costs by 45% while improving system reliability. Their expertise in AWS and modern DevOps practices made the transition seamless and worry-free.",
       name: "James Thompson",
       designation: "IT Director, CloudFirst Ltd",
-      src: "/placeholder.svg?height=100&width=100",
+      src: "/placeholder.svg?height=100&width=100&text=JT",
     },
     {
       quote:
         "The website design they created for our financial services firm perfectly captures our brand identity while maintaining the professional trust our clients expect. The conversion rate has improved by 60% since the redesign.",
       name: "Aisha Patel",
       designation: "Founder, WealthWise Advisors",
-      src: "/placeholder.svg?height=100&width=100",
+      src: "/placeholder.svg?height=100&width=100&text=AP",
     },
   ]
 
