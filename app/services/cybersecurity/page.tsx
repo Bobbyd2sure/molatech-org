@@ -172,29 +172,22 @@ export default function CybersecurityPage() {
     {
       quote:
         "MolaTech's cybersecurity team transformed our security posture completely. Their GRC consulting helped us achieve SOC 2 compliance in record time, and their ongoing security monitoring has prevented multiple potential breaches. The team's expertise in both technical security and regulatory compliance is unmatched.",
-      name: "Sarah Mitchell",
-      designation: "CISO, TechCorp Industries",
+      name: "Adeola Mwandala",
+      designation: "CEO, Marte Beauty Inc.",
       src: "/placeholder.svg?height=100&width=100",
     },
     {
       quote:
         "The penetration testing services provided by MolaTech revealed critical vulnerabilities we never knew existed. Their detailed reports and remediation guidance helped us strengthen our defenses significantly. The incident response training they provided was invaluable when we faced a real security event.",
-      name: "David Chen",
-      designation: "IT Security Manager, HealthFirst Medical",
+      name: "Thomas Ndhlebe",
+      designation: "Tenderglove Healthcare",
       src: "/placeholder.svg?height=100&width=100",
     },
     {
       quote:
         "Working with MolaTech on our cloud security strategy was a game-changer. They helped us implement comprehensive security controls across our AWS infrastructure and established a robust DevSecOps pipeline. Our security incidents dropped by 90% after their implementation.",
-      name: "Maria Rodriguez",
-      designation: "Cloud Architect, FinanceFlow Solutions",
-      src: "/placeholder.svg?height=100&width=100",
-    },
-    {
-      quote:
-        "The security awareness training program designed by MolaTech significantly improved our team's security consciousness. Phishing attempts that used to succeed are now immediately reported by our staff. Their approach to making security training engaging and practical is exceptional.",
-      name: "James Thompson",
-      designation: "HR Director, GlobalTech Enterprises",
+      name: "Mary Smith",
+      designation: "CEO, Marymia Limited",
       src: "/placeholder.svg?height=100&width=100",
     },
   ]
@@ -204,32 +197,20 @@ export default function CybersecurityPage() {
     {
       quote:
         "Outstanding incident response capabilities. When we faced a security breach, MolaTech's team was on-site within hours and had the situation contained quickly.",
-      name: "Lisa Wang",
-      title: "CTO, DataSecure Inc",
+      name: "Adeola Mwandala",
+      title: "CEO, Marte Beauty Inc.",
     },
     {
       quote:
         "Their risk assessment methodology is thorough and practical. We now have a clear understanding of our security risks and a roadmap to address them.",
-      name: "Robert Kim",
-      title: "Risk Manager, SecureBank",
+      name: "Thomas Ndhlebe",
+      title: "Tenderglove Healthcare",
     },
     {
       quote:
         "The compliance consulting services helped us navigate complex regulatory requirements with ease. Highly professional and knowledgeable team.",
-      name: "Jennifer Lee",
-      title: "Compliance Officer, MedTech Solutions",
-    },
-    {
-      quote:
-        "Excellent penetration testing services. The detailed findings and recommendations helped us significantly improve our security posture.",
-      name: "Michael Brown",
-      title: "Security Engineer, CloudFirst",
-    },
-    {
-      quote:
-        "Their security training programs are engaging and effective. Our employees are now much more security-aware and proactive.",
-      name: "Amanda Davis",
-      title: "Training Manager, EduTech Corp",
+      name: "Mary Smith",
+      title: "CEO, Marymia Limited",
     },
   ]
 

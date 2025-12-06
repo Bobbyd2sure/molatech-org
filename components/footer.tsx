@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react"
 import { FloatingDock } from "@/components/ui/aceternity/floating-dock"
 
@@ -31,7 +32,14 @@ export default function Footer() {
       <div className="container px-4 md:px-6 py-12">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div className="space-y-4">
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center space-x-3">
+              <Image
+                src="/molatech-logo.png"
+                alt="MolaTech Logo"
+                width={32}
+                height={32}
+                className="h-8 w-auto"
+              />
               <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-500 text-transparent bg-clip-text">
                 MolaTech
               </span>
@@ -89,6 +97,11 @@ export default function Footer() {
                   Consultancy
                 </Link>
               </li>
+              <li>
+                <Link href="/services/automation" className="text-muted-foreground hover:text-foreground">
+                  Automation & Workflow
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="space-y-4">
@@ -100,8 +113,41 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/projects" className="text-muted-foreground hover:text-foreground">
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-muted-foreground hover:text-foreground">
+                  Blog
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className="text-muted-foreground hover:text-foreground">
                   Contact
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="text-muted-foreground hover:text-foreground">
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link href="/book" className="text-muted-foreground hover:text-foreground">
+                  Book a Call
+                </Link>
+              </li>
+            </ul>
+            <h3 className="text-base font-medium mt-6">Legal</h3>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/privacy" className="text-muted-foreground hover:text-foreground">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="text-muted-foreground hover:text-foreground">
+                  Terms of Service
                 </Link>
               </li>
             </ul>
@@ -111,7 +157,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li className="flex items-start space-x-2">
                 <MapPin className="h-5 w-5 text-muted-foreground" />
-                <span className="text-muted-foreground">123 Tech Street, Innovation City, TC 12345</span>
+                <span className="text-muted-foreground">701 Tillery Street Unit 12 2179, Austin, TX 78702</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="h-5 w-5 text-muted-foreground" />
@@ -119,7 +165,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="h-5 w-5 text-muted-foreground" />
-                <span className="text-muted-foreground">info@molatech.com</span>
+                <span className="text-muted-foreground">info@molatech.org</span>
               </li>
             </ul>
           </div>

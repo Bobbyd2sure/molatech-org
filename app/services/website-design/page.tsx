@@ -117,22 +117,22 @@ export default function WebsiteDesignPage() {
     {
       quote:
         "The website design exceeded our expectations. The team's attention to detail and understanding of our brand resulted in a 75% increase in lead generation and significantly improved user engagement.",
-      name: "Sarah Mitchell",
-      designation: "Marketing Director, TechFlow Solutions",
+      name: "Adeola Mwandala",
+      designation: "CEO, Marte Beauty Inc.",
       src: "/placeholder.svg?height=100&width=100",
     },
     {
       quote:
         "Outstanding design work that perfectly captures our brand identity. The new website has improved our conversion rate by 60% and received countless compliments from our clients.",
-      name: "David Chen",
-      designation: "CEO, InnovateDesign Co.",
+      name: "Thomas Ndhlebe",
+      designation: "Tenderglove Healthcare",
       src: "/placeholder.svg?height=100&width=100",
     },
     {
       quote:
         "Professional, creative, and results-driven. The responsive design works flawlessly across all devices and has significantly improved our mobile user experience.",
-      name: "Emily Rodriguez",
-      designation: "Product Manager, DigitalCraft",
+      name: "Mary Smith",
+      designation: "CEO, Marymia Limited",
       src: "/placeholder.svg?height=100&width=100",
     },
   ]
@@ -140,18 +140,18 @@ export default function WebsiteDesignPage() {
   const additionalTestimonials = [
     {
       quote: "Exceptional design quality and attention to detail. Our new website perfectly represents our brand.",
-      author: "Michael Johnson",
-      role: "Business Owner",
+      author: "Adeola Mwandala",
+      role: "CEO, Marte Beauty Inc.",
     },
     {
       quote: "The design team understood our vision and delivered beyond expectations. Highly recommended!",
-      author: "Lisa Zhang",
-      role: "Creative Director",
+      author: "Thomas Ndhlebe",
+      role: "Tenderglove Healthcare",
     },
     {
       quote: "Beautiful, functional design that has significantly improved our online presence and conversions.",
-      author: "Robert Kim",
-      role: "E-commerce Manager",
+      author: "Mary Smith",
+      role: "CEO, Marymia Limited",
     },
   ]
 

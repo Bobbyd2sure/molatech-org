@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -13,7 +14,15 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-3">
+            <Image
+              src="/molatech-logo.png"
+              alt="MolaTech Logo"
+              width={40}
+              height={40}
+              className="h-10 w-auto"
+              priority
+            />
             <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-500 text-transparent bg-clip-text">
               MolaTech
             </span>
@@ -35,6 +44,12 @@ export default function Navbar() {
           >
             Services
           </Link>
+          <Link
+            href="/projects"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            Projects
+          </Link>
           <Button asChild>
             <Link href="/start">Start Now</Link>
           </Button>
@@ -42,6 +57,7 @@ export default function Navbar() {
         <button
           className="flex items-center justify-center rounded-md p-2 md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          suppressHydrationWarning
         >
           {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           <span className="sr-only">Toggle menu</span>
@@ -63,6 +79,9 @@ export default function Navbar() {
           </Link>
           <Link href="/services" className="flex items-center space-x-2" onClick={() => setIsMenuOpen(false)}>
             <span className="text-lg font-medium">Services</span>
+          </Link>
+          <Link href="/projects" className="flex items-center space-x-2" onClick={() => setIsMenuOpen(false)}>
+            <span className="text-lg font-medium">Projects</span>
           </Link>
           <Button asChild className="w-full" onClick={() => setIsMenuOpen(false)}>
             <Link href="/start">Start Now</Link>

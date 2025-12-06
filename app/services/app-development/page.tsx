@@ -82,22 +82,22 @@ export default function AppDevelopmentPage() {
     {
       quote:
         "The mobile app they developed for us has received outstanding feedback from our users. The user interface is intuitive, the performance is excellent, and the features perfectly match our business needs.",
-      name: "Michael Chen",
-      designation: "Product Manager, InnovateCorp",
+      name: "Adeola Mwandala",
+      designation: "CEO, Marte Beauty Inc.",
       src: "/placeholder.svg?height=100&width=100",
     },
     {
       quote:
         "Our fitness app built by MolaTech reached 100K downloads in the first month. The cross-platform approach saved us time and budget while delivering native-quality performance.",
-      name: "Sarah Williams",
-      designation: "CEO, FitLife Technologies",
+      name: "Thomas Ndhlebe",
+      designation: "Tenderglove Healthcare",
       src: "/placeholder.svg?height=100&width=100",
     },
     {
       quote:
         "The e-commerce app they created increased our mobile sales by 60%. The seamless user experience and robust backend integration exceeded our expectations.",
-      name: "David Rodriguez",
-      designation: "CTO, ShopSmart Inc",
+      name: "Mary Smith",
+      designation: "CEO, Marymia Limited",
       src: "/placeholder.svg?height=100&width=100",
     },
   ]
@@ -105,18 +105,18 @@ export default function AppDevelopmentPage() {
   const additionalTestimonials = [
     {
       quote: "Exceptional mobile app development with attention to every detail. Our users love the smooth experience.",
-      author: "Emma Thompson",
-      role: "Startup Founder",
+      author: "Adeola Mwandala",
+      role: "CEO, Marte Beauty Inc.",
     },
     {
       quote: "Professional team that delivered our app on time and within budget. Highly recommend their services.",
-      author: "James Wilson",
-      role: "Product Owner",
+      author: "Thomas Ndhlebe",
+      role: "Tenderglove Healthcare",
     },
     {
       quote: "The best mobile development team we've worked with. They understand both technical and business needs.",
-      author: "Lisa Chen",
-      role: "Tech Director",
+      author: "Mary Smith",
+      role: "CEO, Marymia Limited",
     },
   ]
 

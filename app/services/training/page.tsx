@@ -234,30 +234,23 @@ export default function TrainingPage() {
     {
       quote:
         "The training program completely transformed our development team's capabilities. We're now shipping features twice as fast with higher quality code.",
-      name: "Sarah Johnson",
-      title: "CTO, TechNova",
-      image: "/professional-woman-headshot.png",
+      name: "Adeola Mwandala",
+      title: "CEO, Marte Beauty Inc.",
+      image: "/placeholder.svg?height=100&width=100",
     },
     {
       quote:
         "The cybersecurity training was comprehensive and engaging. Our employees actually enjoyed the learning process, which made implementation much smoother.",
-      name: "Michael Chen",
-      title: "CISO, Global Financial Services",
-      image: "/professional-man-headshot.png",
+      name: "Thomas Ndhlebe",
+      title: "Tenderglove Healthcare",
+      image: "/placeholder.svg?height=100&width=100",
     },
     {
       quote:
         "The cloud migration training was exactly what our team needed. The hands-on approach ensured everyone was confident before we started our actual migration.",
-      name: "Dr. Alicia Rodriguez",
-      title: "IT Director, HealthTech Solutions",
-      image: "/professional-woman-doctor-headshot.png",
-    },
-    {
-      quote:
-        "I took the Data Science bootcamp to pivot my career, and within 3 months of completion, I landed my dream job with a 40% salary increase.",
-      name: "James Wilson",
-      title: "Data Scientist, Analytics Co",
-      image: "/young-professional-man-headshot.png",
+      name: "Mary Smith",
+      title: "CEO, Marymia Limited",
+      image: "/placeholder.svg?height=100&width=100",
     },
   ]
 
@@ -266,34 +259,22 @@ export default function TrainingPage() {
     {
       quote:
         "The React Native course helped me transition from web to mobile development seamlessly. Highly recommended!",
-      name: "Emma Thompson",
-      title: "Mobile Developer",
-      image: "/young-woman-developer.png",
+      name: "Adeola Mwandala",
+      title: "CEO, Marte Beauty Inc.",
+      image: "/placeholder.svg?height=100&width=100",
     },
     {
       quote:
         "The AWS certification training was intense but incredibly valuable. I passed the exam on my first attempt.",
-      name: "David Park",
-      title: "Cloud Architect",
-      image: "/asian-professional-man.png",
+      name: "Thomas Ndhlebe",
+      title: "Tenderglove Healthcare",
+      image: "/placeholder.svg?height=100&width=100",
     },
     {
       quote: "The corporate training program was tailored perfectly to our team's needs. Worth every penny.",
-      name: "Lisa Martinez",
-      title: "HR Director",
-      image: "/latina-professional-woman.png",
-    },
-    {
-      quote: "The machine learning course gave me practical skills I could immediately apply to my research projects.",
-      name: "Dr. Robert Kim",
-      title: "Research Scientist",
-      image: "/asian-scientist.png",
-    },
-    {
-      quote: "The DevOps training transformed how our team approaches deployment and operations.",
-      name: "Thomas Nelson",
-      title: "DevOps Engineer",
-      image: "/black-engineer.png",
+      name: "Mary Smith",
+      title: "CEO, Marymia Limited",
+      image: "/placeholder.svg?height=100&width=100",
     },
   ]
 

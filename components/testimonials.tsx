@@ -1,144 +1,81 @@
 "use client"
 
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { CardContainer, CardBody, CardItem } from "@/components/ui/aceternity/3d-card"
-import { AnimatedTestimonials } from "@/components/ui/aceternity/animated-testimonials"
+import { Card, CardContent } from "@/components/ui/card"
 import { InfiniteMovingCards } from "@/components/ui/aceternity/infinite-moving-cards"
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
-import { Star, Quote } from "lucide-react"
+import { motion, useInView, AnimatePresence } from "framer-motion"
+import { useRef, useState, useEffect } from "react"
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react"
 
 export default function Testimonials() {
   const testimonials = [
     {
       quote:
         "Working with MolaTech transformed our online presence completely. Their web development expertise helped us increase conversions by 40% and our customer engagement has never been higher. The team's attention to detail and commitment to excellence is truly remarkable.",
-      name: "Sarah Johnson",
-      designation: "CEO, TechStart Inc.",
-      src: "/placeholder.svg?height=100&width=100&text=SJ",
+      name: "Adeola Mwandala",
+      designation: "CEO, Marte Beauty Inc.",
+      initials: "AM",
     },
     {
       quote:
         "The mobile app they developed for us has received outstanding feedback from our users. The user interface is intuitive, the performance is excellent, and the features perfectly match our business needs. Highly recommended for app development projects.",
-      name: "Michael Chen",
-      designation: "Product Manager, InnovateCorp",
-      src: "/placeholder.svg?height=100&width=100&text=MC",
+      name: "Thomas Ndhlebe",
+      designation: "Tenderglove Healthcare",
+      initials: "TN",
     },
     {
       quote:
         "Their cybersecurity training program significantly improved our team's awareness and reduced security incidents by 75%. The comprehensive approach and practical exercises made complex security concepts easy to understand and implement.",
-      name: "David Wilson",
-      designation: "CTO, SecureNet Solutions",
-      src: "/placeholder.svg?height=100&width=100&text=DW",
-    },
-    {
-      quote:
-        "The digital marketing strategy they implemented for our business exceeded all expectations. Our online visibility increased dramatically, and we saw a 150% increase in qualified leads within just three months of launching the campaign.",
-      name: "Emily Rodriguez",
-      designation: "Marketing Director, GrowthCo",
-      src: "/placeholder.svg?height=100&width=100&text=ER",
-    },
-    {
-      quote:
-        "MolaTech's cloud migration services helped us reduce our infrastructure costs by 45% while improving system reliability. Their expertise in AWS and modern DevOps practices made the transition seamless and worry-free.",
-      name: "James Thompson",
-      designation: "IT Director, CloudFirst Ltd",
-      src: "/placeholder.svg?height=100&width=100&text=JT",
-    },
-    {
-      quote:
-        "The website design they created for our financial services firm perfectly captures our brand identity while maintaining the professional trust our clients expect. The conversion rate has improved by 60% since the redesign.",
-      name: "Aisha Patel",
-      designation: "Founder, WealthWise Advisors",
-      src: "/placeholder.svg?height=100&width=100&text=AP",
+      name: "Mary Smith",
+      designation: "CEO, Marymia Limited",
+      initials: "MS",
     },
   ]
 
   const additionalTestimonials = [
     {
       quote:
-        "Outstanding service and exceptional results. The team delivered exactly what we needed, on time and within budget.",
-      author: "Robert Kim",
-      role: "Startup Founder",
-      avatar: "RK",
+        "Working with MolaTech transformed our online presence completely. Their web development expertise helped us increase conversions by 40%.",
+      author: "Adeola Mwandala",
+      role: "CEO, Marte Beauty Inc.",
+      avatar: "AM",
       rating: 5,
     },
     {
       quote:
-        "Professional, reliable, and innovative. They turned our vision into reality with remarkable precision and creativity.",
-      author: "Lisa Zhang",
-      role: "E-commerce Director",
-      avatar: "LZ",
+        "The mobile app they developed for us has received outstanding feedback from our users. Highly recommended for app development projects.",
+      author: "Thomas Ndhlebe",
+      role: "Tenderglove Healthcare",
+      avatar: "TN",
       rating: 5,
     },
     {
       quote:
-        "The best technology partner we've ever worked with. Their expertise and dedication are unmatched in the industry.",
-      author: "Mark Davis",
-      role: "Operations Manager",
-      avatar: "MD",
-      rating: 5,
-    },
-    {
-      quote:
-        "Incredible attention to detail and customer service. They went above and beyond to ensure our project's success.",
-      author: "Jennifer Lee",
-      role: "Product Owner",
-      avatar: "JL",
-      rating: 5,
-    },
-    {
-      quote:
-        "Fast, efficient, and high-quality work. The results speak for themselves - our business has grown significantly.",
-      author: "Alex Rodriguez",
-      role: "Business Owner",
-      avatar: "AR",
-      rating: 5,
-    },
-    {
-      quote:
-        "Exceptional technical skills combined with excellent communication. A truly professional development team.",
-      author: "Maria Santos",
-      role: "Tech Lead",
+        "Their cybersecurity training program significantly improved our team's awareness and reduced security incidents by 75%.",
+      author: "Mary Smith",
+      role: "CEO, Marymia Limited",
       avatar: "MS",
-      rating: 5,
-    },
-    {
-      quote: "They transformed our outdated systems into modern, efficient solutions. Highly recommend their services.",
-      author: "John Mitchell",
-      role: "IT Manager",
-      avatar: "JM",
-      rating: 5,
-    },
-    {
-      quote:
-        "Creative solutions and flawless execution. Our new platform exceeded all expectations and user feedback is amazing.",
-      author: "Sophie Chen",
-      role: "UX Director",
-      avatar: "SC",
-      rating: 5,
-    },
-    {
-      quote:
-        "Reliable, innovative, and results-driven. They helped us achieve our digital transformation goals seamlessly.",
-      author: "Daniel Brown",
-      role: "Digital Strategy Lead",
-      avatar: "DB",
-      rating: 5,
-    },
-    {
-      quote:
-        "Top-notch development team with deep expertise. They delivered a complex project with impressive quality and speed.",
-      author: "Rachel Green",
-      role: "Project Manager",
-      avatar: "RG",
       rating: 5,
     },
   ]
 
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % testimonials.length)
+    }, 6000)
+    return () => clearInterval(interval)
+  }, [testimonials.length])
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  }
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % testimonials.length)
+  }
 
   return (
     <section ref={ref} className="w-full py-12 md:py-24 lg:py-32 bg-muted relative overflow-hidden">
@@ -165,14 +102,99 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Main Animated Testimonials */}
+        {/* Featured Testimonial Carousel */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-16 mb-16"
         >
-          <AnimatedTestimonials testimonials={testimonials} autoplay={true} />
+          <div className="max-w-4xl mx-auto">
+            <Card className="relative border-0 bg-gradient-to-br from-background to-muted shadow-2xl overflow-hidden">
+              {/* Decorative elements */}
+              <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-purple-500/10 to-transparent rounded-full -translate-x-16 -translate-y-16" />
+              <div className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tl from-blue-500/10 to-transparent rounded-full translate-x-24 translate-y-24" />
+
+              <CardContent className="relative p-8 md:p-12">
+                <Quote className="absolute top-6 left-6 h-12 w-12 text-purple-500/20" />
+
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeIndex}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                    className="text-center"
+                  >
+                    {/* Star Rating */}
+                    <div className="flex justify-center gap-1 mb-6">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                      ))}
+                    </div>
+
+                    {/* Quote */}
+                    <blockquote className="text-lg md:text-xl lg:text-2xl text-foreground/90 leading-relaxed mb-8 max-w-3xl mx-auto">
+                      "{testimonials[activeIndex].quote}"
+                    </blockquote>
+
+                    {/* Author Info */}
+                    <div className="flex flex-col items-center gap-4">
+                      <div className="h-16 w-16 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center shadow-lg">
+                        <span className="text-xl font-bold text-white">
+                          {testimonials[activeIndex].initials}
+                        </span>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-lg text-foreground">
+                          {testimonials[activeIndex].name}
+                        </p>
+                        <p className="text-muted-foreground">
+                          {testimonials[activeIndex].designation}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Navigation */}
+                <div className="flex justify-center items-center gap-4 mt-8">
+                  <button
+                    onClick={handlePrev}
+                    className="h-10 w-10 rounded-full bg-muted hover:bg-muted/80 flex items-center justify-center transition-colors"
+                    aria-label="Previous testimonial"
+                  >
+                    <ChevronLeft className="h-5 w-5" />
+                  </button>
+
+                  {/* Dots */}
+                  <div className="flex gap-2">
+                    {testimonials.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setActiveIndex(index)}
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                          index === activeIndex
+                            ? "w-8 bg-gradient-to-r from-purple-600 to-blue-500"
+                            : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                        }`}
+                        aria-label={`Go to testimonial ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={handleNext}
+                    className="h-10 w-10 rounded-full bg-muted hover:bg-muted/80 flex items-center justify-center transition-colors"
+                    aria-label="Next testimonial"
+                  >
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </motion.div>
 
         {/* Infinite Moving Cards */}
@@ -198,67 +220,58 @@ export default function Testimonials() {
           />
         </motion.div>
 
-        {/* Enhanced 3D Testimonial Cards */}
+        {/* Testimonial Grid */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <h3 className="text-2xl font-bold text-center mb-12">Featured Client Stories</h3>
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3 lg:gap-12">
-            {testimonials.slice(0, 3).map((testimonial, index) => (
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.6, delay: 0.9 + index * 0.2 }}
+                transition={{ duration: 0.6, delay: 0.9 + index * 0.1 }}
               >
-                <CardContainer className="inter-var h-full">
-                  <CardBody className="relative group/card h-full">
-                    <Card className="border-0 bg-background shadow-lg h-full hover:shadow-xl transition-all duration-300 overflow-hidden">
-                      {/* Quote Icon */}
-                      <div className="absolute top-4 right-4 opacity-10">
-                        <Quote className="h-12 w-12 text-purple-500" />
+                <Card className="h-full border-0 bg-background shadow-lg hover:shadow-xl transition-all duration-300 group">
+                  <CardContent className="p-6 h-full flex flex-col">
+                    {/* Quote Icon */}
+                    <Quote className="h-8 w-8 text-purple-500/30 mb-4 group-hover:text-purple-500/50 transition-colors" />
+
+                    {/* Star Rating */}
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                      ))}
+                    </div>
+
+                    {/* Quote Text */}
+                    <p className="text-muted-foreground leading-relaxed flex-grow mb-6">
+                      "{testimonial.quote.length > 180
+                        ? testimonial.quote.slice(0, 180) + "..."
+                        : testimonial.quote}"
+                    </p>
+
+                    {/* Author */}
+                    <div className="flex items-center gap-3 pt-4 border-t border-border">
+                      <div className="h-10 w-10 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center flex-shrink-0">
+                        <span className="text-sm font-bold text-white">
+                          {testimonial.initials}
+                        </span>
                       </div>
-
-                      <CardContent className="pt-8 pb-6 relative">
-                        <CardItem translateZ="50">
-                          {/* Star Rating */}
-                          <div className="flex gap-1 mb-4">
-                            {[...Array(5)].map((_, i) => (
-                              <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                            ))}
-                          </div>
-                          <p className="text-muted-foreground leading-relaxed">
-                            "{testimonial.quote.slice(0, 150)}..."
-                          </p>
-                        </CardItem>
-                      </CardContent>
-
-                      <CardFooter className="pt-0">
-                        <div className="flex items-center space-x-4 w-full">
-                          <CardItem translateZ="60">
-                            <Avatar className="border-2 border-purple-500/20 shadow-lg">
-                              <AvatarImage src={testimonial.src || "/placeholder.svg"} alt={testimonial.name} />
-                              <AvatarFallback className="bg-gradient-to-br from-purple-500/10 to-blue-500/10 text-purple-700 font-semibold">
-                                {testimonial.name
-                                  .split(" ")
-                                  .map((n) => n[0])
-                                  .join("")}
-                              </AvatarFallback>
-                            </Avatar>
-                          </CardItem>
-                          <CardItem translateZ="40" className="flex-1">
-                            <div>
-                              <p className="text-sm font-semibold leading-none text-foreground">{testimonial.name}</p>
-                              <p className="text-sm text-muted-foreground mt-1">{testimonial.designation}</p>
-                            </div>
-                          </CardItem>
-                        </div>
-                      </CardFooter>
-                    </Card>
-                  </CardBody>
-                </CardContainer>
+                      <div>
+                        <p className="font-semibold text-sm text-foreground">
+                          {testimonial.name}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {testimonial.designation}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </motion.div>
             ))}
           </div>
@@ -273,7 +286,7 @@ export default function Testimonials() {
         >
           <h3 className="text-lg font-semibold text-muted-foreground mb-8">Trusted by Leading Companies</h3>
           <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
-            {["TechStart Inc.", "InnovateCorp", "SecureNet", "GrowthCo", "CloudFirst Ltd", "WealthWise"].map(
+            {["Marte Beauty Inc.", "Tenderglove Healthcare", "Marymia Limited"].map(
               (company, index) => (
                 <motion.div
                   key={index}

@@ -301,29 +301,22 @@ export default function DigitalMarketingPage() {
     {
       quote:
         "The digital marketing strategy they developed transformed our online presence completely. Our e-commerce sales increased by 400% within just 6 months, and our brand awareness has never been higher.",
-      name: "Sarah Johnson",
-      designation: "CEO, Fashion Forward",
+      name: "Adeola Mwandala",
+      designation: "CEO, Marte Beauty Inc.",
       src: "/placeholder.svg?height=100&width=100",
     },
     {
       quote:
         "Their PPC campaigns delivered exceptional ROI. We saw a 300% return on our advertising spend and significantly reduced our customer acquisition costs. Highly recommend their expertise.",
-      name: "Michael Chen",
-      designation: "Marketing Director, TechFlow",
+      name: "Thomas Ndhlebe",
+      designation: "Tenderglove Healthcare",
       src: "/placeholder.svg?height=100&width=100",
     },
     {
       quote:
         "The SEO results were outstanding. Our organic traffic increased by 250% and we're now ranking #1 for our most important keywords. Their team's expertise is unmatched.",
-      name: "Emily Rodriguez",
-      designation: "Founder, GreenLife Wellness",
-      src: "/placeholder.svg?height=100&width=100",
-    },
-    {
-      quote:
-        "Their social media marketing strategy helped us build a community of over 100K engaged followers. Our brand engagement increased by 400% and sales through social channels tripled.",
-      name: "David Wilson",
-      designation: "Brand Manager, Urban Style",
+      name: "Mary Smith",
+      designation: "CEO, Marymia Limited",
       src: "/placeholder.svg?height=100&width=100",
     },
   ]
@@ -331,28 +324,18 @@ export default function DigitalMarketingPage() {
   const additionalTestimonials = [
     {
       quote: "Exceptional email marketing campaigns that delivered 450% ROI",
-      author: "Lisa Zhang",
-      role: "E-commerce Director",
+      author: "Adeola Mwandala",
+      role: "CEO, Marte Beauty Inc.",
     },
     {
       quote: "Their content marketing strategy generated 300% more qualified leads",
-      author: "Mark Davis",
-      role: "VP Marketing",
+      author: "Thomas Ndhlebe",
+      role: "Tenderglove Healthcare",
     },
     {
       quote: "Outstanding analytics and reporting that improved our decision making",
-      author: "Jennifer Lee",
-      role: "CMO",
-    },
-    {
-      quote: "Professional team that delivered results beyond our expectations",
-      author: "Alex Rodriguez",
-      role: "Business Owner",
-    },
-    {
-      quote: "Innovative strategies that kept us ahead of the competition",
-      author: "Maria Santos",
-      role: "Marketing Manager",
+      author: "Mary Smith",
+      role: "CEO, Marymia Limited",
     },
   ]
 

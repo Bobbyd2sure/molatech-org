@@ -88,8 +88,35 @@ body {
   * {
     @apply border-border;
   }
-  body {
+
+  html, body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  /* Prevent horizontal scroll on mobile */
+  body {
+    position: relative;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Improve touch scrolling */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+
+  /* Prevent text size adjustment on mobile */
+  body {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 }
 
@@ -201,5 +228,62 @@ body {
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  /* Better spacing on mobile */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Larger touch targets */
+  button, a, input, textarea, select {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Prevent zoom on input focus */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+
+  /* Ensure proper text alignment on mobile */
+  h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+  }
+
+  /* Keep body text left-aligned for readability */
+  p, li {
+    text-align: left;
+  }
+}
+
+/* Fix container overflow */
+.container {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent layout shift from long words */
+h1, h2, h3, h4, h5, h6, p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Safe area for notched devices */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
   }
 }

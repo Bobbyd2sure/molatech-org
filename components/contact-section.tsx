@@ -21,8 +21,8 @@ export default function ContactSection() {
                 <Mail className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-medium">Email Us</h3>
-                  <p className="text-muted-foreground">info@molatech.com</p>
-                  <p className="text-muted-foreground">support@molatech.com</p>
+                  <p className="text-muted-foreground">info@molatech.org</p>
+                  <p className="text-muted-foreground">support@molatech.org</p>
                 </div>
               </div>
 
@@ -39,8 +39,8 @@ export default function ContactSection() {
                 <MapPin className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="font-medium">Visit Us</h3>
-                  <p className="text-muted-foreground">123 Tech Street</p>
-                  <p className="text-muted-foreground">Innovation City, TC 12345</p>
+                  <p className="text-muted-foreground">701 Tillery Street Unit 12 2179</p>
+                  <p className="text-muted-foreground">Austin, TX 78702</p>
                 </div>
               </div>
 
@@ -54,11 +54,18 @@ export default function ContactSection() {
               </div>
             </div>
 
-            <div className="mt-8 h-64 rounded-lg overflow-hidden">
-              {/* This would be a Google Map in a real implementation */}
-              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                <p className="text-muted-foreground">Map Location</p>
-              </div>
+            <div className="mt-8 h-64 rounded-lg overflow-hidden shadow-lg">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.5088392850944!2d-97.71435492429882!3d30.26349597479969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b5a6e6c9a3a7%3A0x5c5e0e7c3e7c3e7c!2s701%20Tillery%20St%2C%20Austin%2C%20TX%2078702%2C%20USA!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="MolaTech Office Location"
+                className="w-full h-full"
+              />
             </div>
           </div>
 

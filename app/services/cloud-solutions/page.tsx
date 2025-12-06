@@ -335,26 +335,20 @@ export default function CloudSolutionsPage() {
     {
       quote:
         "The cloud migration transformed our business operations. We now handle 10x more traffic with 40% lower costs.",
-      name: "Sarah Johnson",
-      title: "CTO at TechCorp",
+      name: "Adeola Mwandala",
+      title: "CEO, Marte Beauty Inc.",
       image: "/placeholder.svg?height=100&width=100",
     },
     {
       quote: "Their expertise in multi-cloud architecture helped us avoid vendor lock-in while optimizing performance.",
-      name: "Michael Chen",
-      title: "IT Director at GlobalTech",
+      name: "Thomas Ndhlebe",
+      title: "Tenderglove Healthcare",
       image: "/placeholder.svg?height=100&width=100",
     },
     {
       quote: "The DevOps implementation reduced our deployment time from days to minutes. Game-changing results.",
-      name: "Emily Rodriguez",
-      title: "Lead Developer at InnovateLab",
-      image: "/placeholder.svg?height=100&width=100",
-    },
-    {
-      quote: "Security and compliance were seamlessly maintained throughout the entire migration process.",
-      name: "David Thompson",
-      title: "CISO at SecureFinance",
+      name: "Mary Smith",
+      title: "CEO, Marymia Limited",
       image: "/placeholder.svg?height=100&width=100",
     },
   ]
@@ -362,18 +356,18 @@ export default function CloudSolutionsPage() {
   const movingTestimonials = [
     {
       quote: "Outstanding cloud architecture design and implementation. Exceeded all our expectations.",
-      name: "Lisa Wang",
-      title: "VP Engineering",
+      name: "Adeola Mwandala",
+      title: "CEO, Marte Beauty Inc.",
     },
     {
       quote: "The cost optimization strategies saved us over $2M annually. Incredible ROI.",
-      name: "Robert Kim",
-      title: "CFO",
+      name: "Thomas Ndhlebe",
+      title: "Tenderglove Healthcare",
     },
     {
       quote: "24/7 support and monitoring gives us complete peace of mind.",
-      name: "Amanda Foster",
-      title: "Operations Manager",
+      name: "Mary Smith",
+      title: "CEO, Marymia Limited",
     },
   ]
 

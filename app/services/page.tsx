@@ -16,6 +16,7 @@ import {
   Zap,
   Target,
   Award,
+  Workflow,
 } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -205,6 +206,29 @@ export default function ServicesPage() {
         "Delivered comprehensive training program for a tech startup, resulting in 50% improvement in development speed and 100% team completion rate.",
       benefits: ["Skill enhancement", "Team productivity", "Knowledge retention", "Career advancement"],
       process: ["Needs Assessment", "Curriculum Design", "Training Delivery", "Progress Evaluation"],
+    },
+    {
+      id: "automation",
+      icon: Workflow,
+      title: "Automation & Workflow",
+      description: "Streamline operations and eliminate repetitive tasks with intelligent workflow automation.",
+      image: "/service-automation.png",
+      gradient: "from-orange-500 to-red-500",
+      features: [
+        "Workflow automation with n8n & Zapier",
+        "E-commerce automation",
+        "Marketing automation",
+        "CRM & sales automation",
+        "Data sync & reporting",
+        "AI-powered automation",
+      ],
+      technologies: ["n8n", "Zapier", "Make", "Power Automate", "Klaviyo", "HubSpot"],
+      timeline: "1-4 weeks",
+      complexity: "Low to Medium",
+      caseStudy:
+        "Automated order processing and customer communication for an e-commerce client, saving 30+ hours per week and eliminating manual errors.",
+      benefits: ["Save 20+ hours/week", "Eliminate errors", "Scale operations", "Improve customer experience"],
+      process: ["Process Discovery", "Workflow Design", "Implementation & Testing", "Training & Support"],
     },
     {
       id: "consultancy",

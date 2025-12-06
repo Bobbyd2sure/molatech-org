@@ -173,22 +173,22 @@ export default function WebDevelopmentPage() {
     {
       quote:
         "The web application they built transformed our business operations. The performance improvements were beyond our expectations.",
-      name: "Sarah Johnson",
-      title: "CTO, TechCorp",
+      name: "Adeola Mwandala",
+      title: "CEO, Marte Beauty Inc.",
       rating: 5,
     },
     {
       quote:
         "Exceptional attention to detail and technical expertise. They delivered exactly what we needed on time and within budget.",
-      name: "Michael Chen",
-      title: "Founder, StartupXYZ",
+      name: "Thomas Ndhlebe",
+      title: "Tenderglove Healthcare",
       rating: 5,
     },
     {
       quote:
         "The team's ability to understand complex requirements and translate them into elegant solutions is remarkable.",
-      name: "Emily Rodriguez",
-      title: "Product Manager, InnovateCo",
+      name: "Mary Smith",
+      title: "CEO, Marymia Limited",
       rating: 5,
     },
   ]

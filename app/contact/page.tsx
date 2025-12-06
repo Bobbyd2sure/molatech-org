@@ -1,4 +1,16 @@
 import ContactSection from "@/components/contact-section"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description:
+    "Get in touch with MolaTech. Contact us for web development, app development, digital marketing, and other tech services. We're here to help transform your ideas into reality.",
+  openGraph: {
+    title: "Contact Us | MolaTech",
+    description:
+      "Get in touch with MolaTech for your tech needs. Located in Austin, TX.",
+  },
+}
 
 export default function ContactPage() {
   return (
