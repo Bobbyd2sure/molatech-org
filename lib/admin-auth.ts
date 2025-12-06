@@ -1,5 +1,5 @@
-import { createClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
+import type { SupabaseClient } from '@supabase/supabase-js'
 
 const SESSION_COOKIE_NAME = 'admin_session'
 
@@ -9,21 +9,31 @@ const ADMIN_EMAILS = [
   'admin@molatech.org',
 ]
 
-// Create Supabase client for auth
-function createAuthClient() {
+// Create Supabase client for auth using dynamic import
+async function createAuthClient(): Promise<SupabaseClient | null> {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
   if (!supabaseUrl || !supabaseAnonKey) {
+    // Return null during build time when env vars might not be available
+    if (typeof window === 'undefined' && !process.env.NEXT_PUBLIC_SUPABASE_URL) {
+      return null
+    }
     throw new Error('Supabase not configured')
   }
 
+  // Dynamic import to avoid build-time issues
+  const { createClient } = await import('@supabase/supabase-js')
   return createClient(supabaseUrl, supabaseAnonKey)
 }
 
 // Login admin user using Supabase Auth
 export async function loginAdmin(email: string, password: string) {
-  const supabase = createAuthClient()
+  const supabase = await createAuthClient()
+
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
 
   // Check if email is in allowed admin list
   if (!ADMIN_EMAILS.includes(email.toLowerCase())) {
@@ -64,7 +74,9 @@ export async function getSession() {
   if (!sessionToken) return null
 
   try {
-    const supabase = createAuthClient()
+    const supabase = await createAuthClient()
+
+    if (!supabase) return null
 
     const { data: { user }, error } = await supabase.auth.getUser(sessionToken)
 
@@ -86,6 +98,47 @@ export async function getSession() {
     }
   } catch {
     return null
+  }
+}
+
+// Create admin user using Supabase Auth
+export async function createAdminUser(email: string, password: string, name?: string) {
+  const supabase = await createAuthClient()
+
+  if (!supabase) {
+    throw new Error('Supabase not configured')
+  }
+
+  // Check if email is in allowed admin list
+  if (!ADMIN_EMAILS.includes(email.toLowerCase())) {
+    throw new Error('Email not authorized as admin')
+  }
+
+  // Create the user in Supabase Auth
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        name: name || email.split('@')[0],
+        role: 'admin',
+      },
+    },
+  })
+
+  if (error) {
+    throw new Error(error.message || 'Failed to create admin user')
+  }
+
+  if (!data.user) {
+    throw new Error('Failed to create user')
+  }
+
+  return {
+    id: data.user.id,
+    email: data.user.email!,
+    name: data.user.user_metadata?.name || name || email.split('@')[0],
+    role: 'admin',
   }
 }
 

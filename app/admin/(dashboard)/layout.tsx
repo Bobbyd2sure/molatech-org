@@ -2,6 +2,9 @@ import { redirect } from "next/navigation"
 import { getSession } from "@/lib/admin-auth"
 import { AdminSidebar } from "@/components/admin/admin-sidebar"
 
+// Force dynamic rendering - don't prerender admin pages
+export const dynamic = 'force-dynamic'
+
 export default async function DashboardLayout({
   children,
 }: {

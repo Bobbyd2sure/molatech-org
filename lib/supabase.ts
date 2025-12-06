@@ -27,24 +27,45 @@ export interface Database {
   }
 }
 
-// Validate environment variables
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+// Cached client instance
+let _supabaseClient: ReturnType<typeof createClient<Database>> | null | undefined = undefined
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn(
-    'Supabase environment variables are not set. Database features will be disabled.'
-  )
-}
+// Get Supabase client with lazy initialization
+// This prevents build-time errors by only creating the client when actually needed
+export function getSupabaseClient() {
+  // Return cached instance if available
+  if (_supabaseClient !== undefined) {
+    return _supabaseClient
+  }
 
-// Create Supabase client
-export const supabase = supabaseUrl && supabaseAnonKey
-  ? createClient<Database>(supabaseUrl, supabaseAnonKey, {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    if (typeof window !== 'undefined' || process.env.NODE_ENV === 'development') {
+      console.warn('Supabase environment variables are not set. Database features will be disabled.')
+    }
+    _supabaseClient = null
+    return null
+  }
+
+  try {
+    _supabaseClient = createClient<Database>(supabaseUrl, supabaseAnonKey, {
       auth: {
         persistSession: false, // For server-side usage
       },
     })
-  : null
+    return _supabaseClient
+  } catch (error) {
+    console.warn('Failed to create Supabase client:', error)
+    _supabaseClient = null
+    return null
+  }
+}
+
+// Deprecated: Use getSupabaseClient() instead
+// Kept for backward compatibility but may be null during build
+export const supabase = null as ReturnType<typeof createClient<Database>> | null
 
 // Server-side client with service role key (for admin operations)
 export function createServerSupabaseClient() {

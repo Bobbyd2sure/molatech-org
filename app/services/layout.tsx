@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   },
 }
 
+// Force dynamic rendering for service pages
+export const dynamic = 'force-dynamic'
+
 export default function ServicesLayout({
   children,
 }: {
