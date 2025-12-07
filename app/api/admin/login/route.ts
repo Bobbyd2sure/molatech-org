@@ -12,7 +12,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    console.log('Login attempt for:', email)
+
     const { token, expiresAt, user } = await loginAdmin(email, password)
+
+    console.log('Login successful for:', email)
 
     const response = NextResponse.json({
       success: true,
@@ -31,8 +35,9 @@ export async function POST(request: NextRequest) {
     return response
   } catch (error) {
     console.error('Login error:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Invalid credentials'
     return NextResponse.json(
-      { error: 'Invalid credentials' },
+      { error: errorMessage },
       { status: 401 }
     )
   }
