@@ -14,7 +14,7 @@ const navItems = [
 ]
 
 // Routes where we hide the navbar and footer
-const hiddenLayoutRoutes = ["/chat-money-course", "/chat-money-lead"]
+const hiddenLayoutRoutes = ["/chat-money-course", "/chat-money"]
 
 export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
