@@ -15,6 +15,13 @@ export interface ContactSubmission {
   status?: 'new' | 'read' | 'replied' | 'archived'
 }
 
+export interface Lead {
+  id?: string
+  phone: string
+  source: string
+  created_at?: string
+}
+
 export interface Database {
   public: {
     Tables: {
@@ -22,6 +29,11 @@ export interface Database {
         Row: ContactSubmission
         Insert: Omit<ContactSubmission, 'id' | 'created_at'>
         Update: Partial<ContactSubmission>
+      }
+      leads: {
+        Row: Lead
+        Insert: Omit<Lead, 'id' | 'created_at'>
+        Update: Partial<Lead>
       }
     }
   }
