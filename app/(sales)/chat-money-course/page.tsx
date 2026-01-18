@@ -41,25 +41,6 @@ export default function ChatMoneyCourseePage() {
 
   useEffect(() => {
     setIsMounted(true)
-
-    // Hide navbar and footer for this standalone sales page
-    const navbar = document.querySelector('nav')
-    const footer = document.querySelector('footer')
-    const floatingNav = document.querySelector('[class*="floating"]')
-    const backToTop = document.querySelector('[class*="back-to-top"]')
-
-    if (navbar) navbar.style.display = 'none'
-    if (footer) footer.style.display = 'none'
-    if (floatingNav) (floatingNav as HTMLElement).style.display = 'none'
-    if (backToTop) (backToTop as HTMLElement).style.display = 'none'
-
-    // Cleanup: restore on unmount
-    return () => {
-      if (navbar) navbar.style.display = ''
-      if (footer) footer.style.display = ''
-      if (floatingNav) (floatingNav as HTMLElement).style.display = ''
-      if (backToTop) (backToTop as HTMLElement).style.display = ''
-    }
   }, [])
 
   // Course Modules

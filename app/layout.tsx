@@ -3,13 +3,10 @@ import type { Metadata } from "next"
 import "@/app/globals.css"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import { FloatingNav } from "@/components/ui/aceternity/floating-navbar"
+import { LayoutWrapper } from "@/components/layout-wrapper"
 import { OrganizationSchema, WebsiteSchema, LocalBusinessSchema } from "@/components/structured-data"
 import { Toaster } from "@/components/ui/sonner"
 import { GoogleAnalytics } from "@/components/analytics"
-import BackToTop from "@/components/back-to-top"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -101,26 +98,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const navItems = [
-    {
-      name: "Home",
-      link: "/",
-    },
-    {
-      name: "About",
-      link: "/about",
-    },
-    {
-      name: "Services",
-      link: "/services",
-    },
-    {
-      name: "Start Now",
-      link: "/start",
-      isButton: true,
-    },
-  ]
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -137,11 +114,7 @@ export default function RootLayout({
         <GoogleAnalytics />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <div className="relative flex min-h-screen flex-col">
-            <Navbar />
-            <FloatingNav navItems={navItems} />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <BackToTop />
+            <LayoutWrapper>{children}</LayoutWrapper>
           </div>
           <Toaster richColors position="top-right" />
         </ThemeProvider>
