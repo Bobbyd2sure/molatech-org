@@ -314,7 +314,7 @@ export default function ChatMoneyCourseePage() {
             >
               <Badge className="mb-6 bg-emerald-500/10 text-emerald-400 border-emerald-500/20 px-4 py-2 text-sm">
                 <Zap className="w-4 h-4 mr-2 inline" />
-                Limited Time: 67% Off Launch Price
+                Limited Time: 53% Off Launch Price
               </Badge>
             </motion.div>
 
@@ -376,7 +376,7 @@ export default function ChatMoneyCourseePage() {
                 className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white text-lg px-8 py-6 rounded-xl shadow-lg shadow-emerald-500/25"
                 onClick={() => window.open('https://molatech.selar.com', '_blank')}
               >
-                Get Instant Access - N15,000
+                Get Instant Access - N35,000
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
               <Button
@@ -739,15 +739,15 @@ export default function ChatMoneyCourseePage() {
               <Card className="bg-gradient-to-br from-slate-800 to-slate-900 border-emerald-500/30 overflow-hidden relative">
                 {/* Popular Badge */}
                 <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-emerald-500 to-green-500 text-white text-center py-2 font-semibold">
-                  LAUNCH PRICE - 67% OFF
+                  LAUNCH PRICE - 53% OFF
                 </div>
 
                 <CardContent className="p-8 pt-16">
                   {/* Price */}
                   <div className="text-center mb-8">
-                    <div className="text-slate-400 line-through text-xl mb-1">N45,000</div>
+                    <div className="text-slate-400 line-through text-xl mb-1">N75,000</div>
                     <div className="flex items-center justify-center gap-2">
-                      <span className="text-5xl md:text-6xl font-bold text-white">N15,000</span>
+                      <span className="text-5xl md:text-6xl font-bold text-white">N35,000</span>
                     </div>
                     <div className="text-emerald-400 mt-2">One-time payment. Lifetime access.</div>
                   </div>
