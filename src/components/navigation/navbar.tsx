@@ -11,8 +11,8 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn, NAV_LINKS } from "@/utils";
-import { useClerk } from "@clerk/nextjs";
-import { LucideIcon, ZapIcon } from "lucide-react";
+import { LucideIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from 'react';
 import MaxWidthWrapper from "../global/max-width-wrapper";
@@ -20,8 +20,6 @@ import MobileNavbar from "./mobile-navbar";
 import AnimationContainer from "../global/animation-container";
 
 const Navbar = () => {
-
-    const { user } = useClerk();
 
     const [scroll, setScroll] = useState(false);
 
@@ -48,9 +46,16 @@ const Navbar = () => {
             <AnimationContainer reverse delay={0.1} className="size-full">
                 <MaxWidthWrapper className="flex items-center justify-between">
                     <div className="flex items-center space-x-12">
-                        <Link href="/#home">
+                        <Link href="/#home" className="flex items-center gap-2">
+                            <Image
+                                src="/molatech-logo.png"
+                                alt="MolaTech"
+                                width={28}
+                                height={28}
+                                className="size-7"
+                            />
                             <span className="text-lg font-bold font-heading !leading-none">
-                                Linkify
+                                MolaTech
                             </span>
                         </Link>
 
@@ -63,22 +68,22 @@ const Navbar = () => {
                                                 <NavigationMenuTrigger>{link.title}</NavigationMenuTrigger>
                                                 <NavigationMenuContent>
                                                     <ul className={cn(
-                                                        "grid gap-1 p-4 md:w-[400px] lg:w-[500px] rounded-xl",
-                                                        link.title === "Features" ? "lg:grid-cols-[.75fr_1fr]" : "lg:grid-cols-2"
+                                                        "grid gap-1 p-4 md:w-[400px] lg:w-[650px] rounded-xl",
+                                                        link.title === "Services" ? "lg:grid-cols-[.6fr_1fr_1fr]" : "lg:grid-cols-2"
                                                     )}>
-                                                        {link.title === "Features" && (
-                                                            <li className="row-span-4 pr-2 relative rounded-lg overflow-hidden">
-                                                                <div className="absolute inset-0 !z-10 h-full w-[calc(100%-10px)] bg-[linear-gradient(to_right,rgb(38,38,38,0.5)_1px,transparent_1px),linear-gradient(to_bottom,rgb(38,38,38,0.5)_1px,transparent_1px)] bg-[size:1rem_1rem]"></div>
+                                                        {link.title === "Services" && (
+                                                            <li className="row-span-5 pr-2 relative rounded-lg overflow-hidden">
+                                                                <div className="absolute inset-0 !z-10 h-full w-[calc(100%-10px)] bg-[linear-gradient(to_right,rgba(226,232,240,0.8)_1px,transparent_1px),linear-gradient(to_bottom,rgba(226,232,240,0.8)_1px,transparent_1px)] bg-[size:1rem_1rem]"></div>
                                                                 <NavigationMenuLink asChild className="z-20 relative">
                                                                     <Link
-                                                                        href="/"
+                                                                        href="/services"
                                                                         className="flex h-full w-full select-none flex-col justify-end rounded-lg bg-gradient-to-b from-muted/50 to-muted p-4 no-underline outline-none focus:shadow-md"
                                                                     >
                                                                         <h6 className="mb-2 mt-4 text-lg font-medium">
-                                                                            All Features
+                                                                            All Services
                                                                         </h6>
                                                                         <p className="text-sm leading-tight text-muted-foreground">
-                                                                            Manage links, track performance, and more.
+                                                                            Build. Secure. Automate.
                                                                         </p>
                                                                     </Link>
                                                                 </NavigationMenuLink>
@@ -112,23 +117,14 @@ const Navbar = () => {
                     </div>
 
                     <div className="hidden lg:flex items-center">
-                        {user ? (
-                            <div className="flex items-center">
-                                <Link href="/dashboard" className={buttonVariants({ size: "sm", })}>
-                                    Dashboard
-                                </Link>
-                            </div>
-                        ) : (
-                            <div className="flex items-center gap-x-4">
-                                <Link href="/auth/sign-in" className={buttonVariants({ size: "sm", variant: "ghost" })}>
-                                    Sign In
-                                </Link>
-                                <Link href="/auth/sign-up" className={buttonVariants({ size: "sm", })}>
-                                    Get Started
-                                    <ZapIcon className="size-3.5 ml-1.5 text-orange-500 fill-orange-500" />
-                                </Link>
-                            </div>
-                        )}
+                        <div className="flex items-center gap-x-4">
+                            <Link href="/start" className={buttonVariants({ size: "sm", variant: "ghost" })}>
+                                Get Started
+                            </Link>
+                            <Link href="/book" className={cn(buttonVariants({ size: "sm" }), "bg-emerald-500 hover:bg-emerald-600 text-white")}>
+                                Book a Call
+                            </Link>
+                        </div>
                     </div>
 
                     <MobileNavbar />
@@ -155,7 +151,7 @@ const ListItem = React.forwardRef<
                     )}
                     {...props}
                 >
-                    <div className="flex items-center space-x-2 text-neutral-300">
+                    <div className="flex items-center space-x-2 text-foreground">
                         <Icon className="h-4 w-4" />
                         <h6 className="text-sm font-medium !leading-none">
                             {title}

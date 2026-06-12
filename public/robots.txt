@@ -1,0 +1,16 @@
+# robots.txt for MolaTech
+# https://www.molatech.org
+
+User-agent: *
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://www.molatech.org/sitemap.xml
+
+# Crawl delay (optional, some crawlers respect this)
+Crawl-delay: 1

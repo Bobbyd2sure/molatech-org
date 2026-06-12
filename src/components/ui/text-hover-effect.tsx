@@ -50,9 +50,9 @@ export const TextHoverEffect = ({
                     {hovered && (
                         <>
                             <stop offset="0%" stopColor={"var(--indigo-500)"} />
-                            <stop offset="25%" stopColor={"var(--violet-500)"} />
-                            <stop offset="50%" stopColor={"var(--purple-500)"} />
-                            <stop offset="75%" stopColor={"var(--fuchsia-500)"} />
+                            <stop offset="25%" stopColor={"var(--blue-600)"} />
+                            <stop offset="50%" stopColor={"var(--cyan-400)"} />
+                            <stop offset="75%" stopColor={"var(--emerald-400)"} />
                             <stop offset="100%" stopColor={"var(--rose-500)"} />
                         </>
                     )}

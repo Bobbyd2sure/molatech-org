@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { AnimationContainer, Icons } from "@/components"
+import Image from 'next/image';
+import { AnimationContainer } from "@/components"
 import { TextHoverEffect } from "@/components/ui/text-hover-effect"
 
 const Footer = () => {
@@ -13,13 +14,13 @@ const Footer = () => {
                 <AnimationContainer delay={0.1}>
                     <div className="flex flex-col items-start justify-start md:max-w-[200px]">
                         <div className="flex items-start">
-                            <Icons.logo className="w-7 h-7" />
+                            <Image src="/molatech-logo.png" alt="MolaTech" width={28} height={28} className="size-7" />
                         </div>
                         <p className="text-muted-foreground mt-4 text-sm text-start">
-                            Manage your links with ease.
+                            Build. Secure. Automate.
                         </p>
-                        <span className="mt-4 text-neutral-200 text-sm flex items-center">
-                            Made by <Link href="https://shreyas-sihasane.vercel.app/" className="font-semibold ml-1">Shreyas</Link>
+                        <span className="mt-4 text-muted-foreground text-sm flex items-center">
+                            MolaTech LLC &middot; Wyoming, USA
                         </span>
                     </div>
                 </AnimationContainer>
@@ -28,28 +29,33 @@ const Footer = () => {
                     <div className="md:grid md:grid-cols-2 md:gap-8">
                         <AnimationContainer delay={0.2}>
                             <div className="">
-                                <h3 className="text-base font-medium text-white">
-                                    Product
+                                <h3 className="text-base font-medium text-foreground">
+                                    Services
                                 </h3>
                                 <ul className="mt-4 text-sm text-muted-foreground">
                                     <li className="mt-2">
-                                        <Link href="" className="hover:text-foreground transition-all duration-300">
-                                            Features
+                                        <Link href="/services/cybersecurity" className="hover:text-foreground transition-all duration-300">
+                                            Cybersecurity
                                         </Link>
                                     </li>
                                     <li className="mt-2">
-                                        <Link href="" className="hover:text-foreground transition-all duration-300">
-                                            Pricing
+                                        <Link href="/services/web-development" className="hover:text-foreground transition-all duration-300">
+                                            Web Development
                                         </Link>
                                     </li>
                                     <li className="mt-2">
-                                        <Link href="" className="hover:text-foreground transition-all duration-300">
-                                            Testimonials
+                                        <Link href="/services/cloud-solutions" className="hover:text-foreground transition-all duration-300">
+                                            Cloud Solutions
                                         </Link>
                                     </li>
                                     <li className="mt-2">
-                                        <Link href="" className="hover:text-foreground transition-all duration-300">
-                                            Integration
+                                        <Link href="/services/automation" className="hover:text-foreground transition-all duration-300">
+                                            Automation &amp; AI
+                                        </Link>
+                                    </li>
+                                    <li className="mt-2">
+                                        <Link href="/services" className="hover:text-foreground transition-all duration-300">
+                                            All Services
                                         </Link>
                                     </li>
                                 </ul>
@@ -57,28 +63,28 @@ const Footer = () => {
                         </AnimationContainer>
                         <AnimationContainer delay={0.3}>
                             <div className="mt-10 md:mt-0 flex flex-col">
-                                <h3 className="text-base font-medium text-white">
-                                    Integrations
+                                <h3 className="text-base font-medium text-foreground">
+                                    Company
                                 </h3>
                                 <ul className="mt-4 text-sm text-muted-foreground">
                                     <li className="">
-                                        <Link href="" className="hover:text-foreground transition-all duration-300">
-                                            Facebook
+                                        <Link href="/about" className="hover:text-foreground transition-all duration-300">
+                                            About
                                         </Link>
                                     </li>
                                     <li className="mt-2">
-                                        <Link href="" className="hover:text-foreground transition-all duration-300">
-                                            Instagram
+                                        <Link href="/projects" className="hover:text-foreground transition-all duration-300">
+                                            Projects
                                         </Link>
                                     </li>
                                     <li className="mt-2">
-                                        <Link href="" className="hover:text-foreground transition-all duration-300">
-                                            Twitter
+                                        <Link href="/book" className="hover:text-foreground transition-all duration-300">
+                                            Book a Call
                                         </Link>
                                     </li>
                                     <li className="mt-2">
-                                        <Link href="" className="hover:text-foreground transition-all duration-300">
-                                            LinkedIn
+                                        <Link href="/third-party-risk" className="hover:text-foreground transition-all duration-300">
+                                            Third-Party Risk
                                         </Link>
                                     </li>
                                 </ul>
@@ -88,18 +94,18 @@ const Footer = () => {
                     <div className="md:grid md:grid-cols-2 md:gap-8">
                         <AnimationContainer delay={0.4}>
                             <div className="">
-                                <h3 className="text-base font-medium text-white">
+                                <h3 className="text-base font-medium text-foreground">
                                     Resources
                                 </h3>
                                 <ul className="mt-4 text-sm text-muted-foreground">
                                     <li className="mt-2">
-                                        <Link href="/resources/blog" className="hover:text-foreground transition-all duration-300">
+                                        <Link href="/blog" className="hover:text-foreground transition-all duration-300">
                                             Blog
                                         </Link>
                                     </li>
                                     <li className="mt-2">
-                                        <Link href="/resources/help" className="hover:text-foreground transition-all duration-300">
-                                            Support
+                                        <Link href="/faq" className="hover:text-foreground transition-all duration-300">
+                                            FAQ
                                         </Link>
                                     </li>
                                 </ul>
@@ -107,13 +113,13 @@ const Footer = () => {
                         </AnimationContainer>
                         <AnimationContainer delay={0.5}>
                             <div className="mt-10 md:mt-0 flex flex-col">
-                                <h3 className="text-base font-medium text-white">
-                                    Company
+                                <h3 className="text-base font-medium text-foreground">
+                                    Legal
                                 </h3>
                                 <ul className="mt-4 text-sm text-muted-foreground">
                                     <li className="">
-                                        <Link href="" className="hover:text-foreground transition-all duration-300">
-                                            About Us
+                                        <Link href="/contact" className="hover:text-foreground transition-all duration-300">
+                                            Contact
                                         </Link>
                                     </li>
                                     <li className="mt-2">
@@ -137,13 +143,13 @@ const Footer = () => {
             <div className="mt-8 border-t border-border/40 pt-4 md:pt-8 md:flex md:items-center md:justify-between w-full">
                 <AnimationContainer delay={0.6}>
                     <p className="text-sm text-muted-foreground mt-8 md:mt-0">
-                        &copy; {new Date().getFullYear()} Linkify INC. All rights reserved.
+                        &copy; {new Date().getFullYear()} MolaTech LLC. All rights reserved.
                     </p>
                 </AnimationContainer>
             </div>
 
             <div className="h-[20rem] lg:h-[20rem] hidden md:flex items-center justify-center">
-                <TextHoverEffect text="LINKIFY" />
+                <TextHoverEffect text="MOLATECH" />
             </div>
         </footer>
     )

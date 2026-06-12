@@ -1,64 +1,84 @@
-import { HelpCircleIcon, LineChartIcon, Link2Icon, LockIcon, NewspaperIcon, QrCodeIcon } from "lucide-react";
+import { BotIcon, CloudIcon, CodeIcon, GraduationCapIcon, LayoutIcon, MegaphoneIcon, NewspaperIcon, ShieldCheckIcon, SmartphoneIcon, UsersIcon } from "lucide-react";
 
 export const NAV_LINKS = [
     {
-        title: "Features",
-        href: "/features",
+        title: "Services",
+        href: "/services",
         menu: [
             {
-                title: "Link Shortening",
-                tagline: "Shorten links and track their performance.",
-                href: "/features/link-shortening",
-                icon: Link2Icon,
+                title: "Cybersecurity",
+                tagline: "Penetration testing, compliance, SOC, incident response.",
+                href: "/services/cybersecurity",
+                icon: ShieldCheckIcon,
             },
             {
-                title: "Password Protection",
-                tagline: "Secure your links with a password.",
-                href: "/features/password-protection",
-                icon: LockIcon,
+                title: "Web Development",
+                tagline: "Modern, fast websites and web apps that convert.",
+                href: "/services/web-development",
+                icon: CodeIcon,
             },
             {
-                title: "Advanced Analytics",
-                tagline: "Gain insights into who is clicking your links.",
-                href: "/features/analytics",
-                icon: LineChartIcon,
+                title: "App Development",
+                tagline: "iOS, Android, and cross-platform mobile apps.",
+                href: "/services/app-development",
+                icon: SmartphoneIcon,
             },
             {
-                title: "Custom QR Codes",
-                tagline: "Use QR codes to reach your audience.",
-                href: "/features/qr-codes",
-                icon: QrCodeIcon,
+                title: "Website Design",
+                tagline: "Beautiful, conversion-focused design.",
+                href: "/services/website-design",
+                icon: LayoutIcon,
+            },
+            {
+                title: "Cloud Solutions",
+                tagline: "Cloud architecture, migration, and optimization.",
+                href: "/services/cloud-solutions",
+                icon: CloudIcon,
+            },
+            {
+                title: "Automation & AI",
+                tagline: "AI agents and workflow automation.",
+                href: "/services/automation",
+                icon: BotIcon,
+            },
+            {
+                title: "Digital Marketing",
+                tagline: "SEO, paid media, and growth campaigns.",
+                href: "/services/digital-marketing",
+                icon: MegaphoneIcon,
+            },
+            {
+                title: "Consultancy",
+                tagline: "Senior technology and security consulting.",
+                href: "/services/consultancy",
+                icon: UsersIcon,
+            },
+            {
+                title: "Training",
+                tagline: "Hands-on technology and security training.",
+                href: "/services/training",
+                icon: GraduationCapIcon,
             },
         ],
+    },
+    {
+        title: "Projects",
+        href: "/projects",
+    },
+    {
+        title: "About",
+        href: "/about",
     },
     {
         title: "Pricing",
         href: "/pricing",
     },
     {
-        title: "Enterprise",
-        href: "/enterprise",
+        title: "Blog",
+        href: "/blog",
     },
     {
-        title: "Resources",
-        href: "/resources",
-        menu: [
-            {
-                title: "Blog",
-                tagline: "Read articles on the latest trends in tech.",
-                href: "/resources/blog",
-                icon: NewspaperIcon,
-            },
-            {
-                title: "Help",
-                tagline: "Get answers to your questions.",
-                href: "/resources/help",
-                icon: HelpCircleIcon,
-            },
-        ]
-    },
-    {
-        title: "Changelog",
-        href: "/changelog",
+        title: "Contact",
+        href: "/contact",
     },
 ];

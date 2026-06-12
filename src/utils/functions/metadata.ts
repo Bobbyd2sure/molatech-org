@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const generateMetadata = ({
-    title = `${process.env.NEXT_PUBLIC_APP_NAME} - The Link Management Platform for Businesses`,
-    description = `${process.env.NEXT_PUBLIC_APP_NAME} is the link management platform for businesses. It helps you build, brand, and track your links.`,
+    title = "MolaTech - Build. Secure. Automate.",
+    description = "Senior security and engineering outcomes for mid-market companies — fixed scope, audit-ready evidence, no surprise invoices.",
     image = "/thumbnail.png",
     icons = [
         {
@@ -41,7 +41,7 @@ export const generateMetadata = ({
         title,
         description,
         ...(image && { card: "summary_large_image", images: [image] }),
-        creator: "@shreyassihasane",
+        creator: "@asapdeji",
     },
     // metadataBase: new URL(process.env.APP_DOMAIN!),
     ...(noIndex && { robots: { index: false, follow: false } }),

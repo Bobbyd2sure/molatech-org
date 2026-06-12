@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Molatech · Real Estate Lead Automation — Live Workflow</title>
+<style>
+  :root {
+    --bg: #0A1628;
+    --bg-2: #0F1F33;
+    --panel: #13243C;
+    --border: #1E3A5F;
+    --text: #E6EEF7;
+    --muted: #8FA4BD;
+    --green: #2DD4BF;
+    --green-dark: #0E9F8E;
+    --red: #FF5C5C;
+    --yellow: #FACC15;
+    --blue: #3B82F6;
+    --accent: #8B5CF6;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: radial-gradient(circle at 50% -10%, #16304F 0%, var(--bg) 60%);
+    color: var(--text);
+    font-family: -apple-system, "Inter", system-ui, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    padding: 28px 36px 60px;
+  }
+  header {
+    display: flex; align-items: center; gap: 18px; margin-bottom: 20px;
+  }
+  .logo {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--green), var(--blue));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; color: #001B17; font-size: 22px;
+  }
+  header .brand { font-weight: 900; letter-spacing: 5px; font-size: 14px; color: var(--muted); }
+  header h1 { margin: 0; font-size: 24px; font-weight: 800; }
+  header .sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+  .toolbar {
+    display: flex; gap: 10px; align-items: center; margin: 10px 0 22px;
+    padding: 10px 14px; background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+  }
+  .toolbar button {
+    cursor: pointer; border: 0; border-radius: 8px; padding: 10px 18px;
+    font-weight: 800; font-size: 14px; letter-spacing: 0.5px;
+  }
+  .btn-run { background: var(--green); color: #001B17; }
+  .btn-run:hover { background: #35ead4; }
+  .btn-reset { background: transparent; color: var(--muted); border: 1px solid var(--border) !important; }
+  .toolbar .status { margin-left: auto; font-size: 13px; color: var(--muted); }
+  .toolbar .status .dot {
+    display: inline-block; width: 8px; height: 8px; border-radius: 99px;
+    background: var(--muted); margin-right: 6px; vertical-align: middle;
+  }
+  .toolbar.running .status .dot { background: var(--green); box-shadow: 0 0 10px var(--green); animation: pulse 1s infinite; }
+
+  .workspace {
+    display: grid; grid-template-columns: minmax(420px, 1fr) 520px; gap: 22px;
+  }
+  @media (max-width: 1100px) { .workspace { grid-template-columns: 1fr; } }
+
+  /* ───── Flow canvas ───── */
+  .canvas {
+    background: var(--bg-2); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px; min-height: 560px; position: relative; overflow: hidden;
+  }
+  .canvas h2 { font-size: 13px; letter-spacing: 3px; color: var(--muted); margin: 0 0 14px; font-weight: 800; }
+
+  .node {
+    display: grid; grid-template-columns: 52px 1fr auto; align-items: center;
+    gap: 14px; padding: 14px 16px; margin-bottom: 10px;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    cursor: pointer; transition: all 0.18s;
+    position: relative;
+  }
+  .node:hover { border-color: #2B5A91; transform: translateY(-1px); }
+  .node.active {
+    border-color: var(--green); box-shadow: 0 0 0 3px rgba(45,212,191,0.15), 0 10px 30px rgba(45,212,191,0.18);
+    background: #0E2A3A;
+  }
+  .node.running { border-color: var(--yellow); box-shadow: 0 0 0 3px rgba(250,204,21,0.2); }
+  .node.running .icon { animation: pulse 0.9s infinite; }
+  .node.done .check { opacity: 1; }
+  .node .icon {
+    width: 52px; height: 52px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 24px;
+    background: #0B1A2E; border: 1px solid var(--border);
+  }
+  .node .title { font-size: 16px; font-weight: 700; }
+  .node .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .node .tool {
+    font-size: 10px; font-weight: 800; letter-spacing: 1px; padding: 3px 8px;
+    border-radius: 99px; background: rgba(139,92,246,0.15); color: #C4B5FD; border: 1px solid rgba(139,92,246,0.3);
+    display: inline-block; margin-top: 4px;
+  }
+  .node .check {
+    width: 28px; height: 28px; border-radius: 99px;
+    background: var(--green); color: #001B17; font-weight: 900;
+    display: flex; align-items: center; justify-content: center; font-size: 14px;
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .node .ms {
+    font-size: 11px; color: var(--green); font-weight: 800; letter-spacing: 1px;
+    display: none;
+  }
+  .node.done .ms { display: block; }
+
+  .arrow {
+    height: 18px; display: flex; justify-content: center; align-items: center;
+    color: var(--border); font-size: 18px;
+  }
+  .node.done + .arrow, .node.running + .arrow { color: var(--green); }
+
+  /* ───── Detail panel ───── */
+  .panel {
+    background: var(--bg-2); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px; min-height: 560px;
+  }
+  .panel h2 { font-size: 13px; letter-spacing: 3px; color: var(--muted); margin: 0 0 6px; font-weight: 800; }
+  .panel h3 { font-size: 22px; margin: 0 0 2px; font-weight: 800; }
+  .panel .tool-chip {
+    display: inline-block; padding: 3px 10px; border-radius: 99px;
+    background: rgba(139,92,246,0.15); color: #C4B5FD; border: 1px solid rgba(139,92,246,0.3);
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-top: 8px;
+  }
+  .panel .desc { color: var(--muted); font-size: 14px; line-height: 1.5; margin: 14px 0 18px; }
+
+  .io-tabs { display: flex; gap: 8px; margin-bottom: 10px; }
+  .io-tabs button {
+    background: transparent; color: var(--muted); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 14px; font-size: 12px; font-weight: 700;
+    letter-spacing: 1px; cursor: pointer;
+  }
+  .io-tabs button.active { background: var(--panel); color: var(--text); border-color: #3b6095; }
+
+  .code {
+    background: #060F1C; border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px; font-family: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+    font-size: 12.5px; line-height: 1.55; color: #CBD5E1;
+    max-height: 320px; overflow: auto;
+    white-space: pre;
+  }
+  .code .k { color: #93C5FD; }
+  .code .s { color: #86EFAC; }
+  .code .n { color: #FCD34D; }
+  .code .c { color: #64748B; font-style: italic; }
+
+  /* ───── Metrics strip ───── */
+  .metrics {
+    margin-top: 22px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  }
+  .metric {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px;
+  }
+  .metric .val { font-size: 28px; font-weight: 900; letter-spacing: -0.5px; }
+  .metric .lbl { font-size: 11px; color: var(--muted); letter-spacing: 2px; margin-top: 4px; font-weight: 700; }
+  .metric.green .val { color: var(--green); }
+  .metric.yellow .val { color: var(--yellow); }
+  .metric.blue .val { color: var(--blue); }
+  .metric.accent .val { color: var(--accent); }
+
+  /* ───── Footer ───── */
+  footer {
+    margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--muted); font-size: 12px;
+  }
+  footer .stack { display: flex; gap: 10px; flex-wrap: wrap; }
+  footer .chip {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 99px;
+    padding: 4px 10px; font-size: 11px;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.08); opacity: 0.85; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">M</div>
+  <div>
+    <div class="brand">MOLATECH · AUTOMATION</div>
+    <h1>Real Estate Lead → Booked Showing · Live Workflow</h1>
+    <div class="sub">Click any node to see its config, input, and output · Click <b>Run workflow</b> to simulate a lead end-to-end.</div>
+  </div>
+</header>
+
+<div class="toolbar" id="toolbar">
+  <button class="btn-run" id="runBtn">▶  Run workflow</button>
+  <button class="btn-reset" id="resetBtn">Reset</button>
+  <div class="status"><span class="dot"></span><span id="statusText">Idle — waiting for lead</span></div>
+</div>
+
+<div class="workspace">
+  <div class="canvas">
+    <h2>WORKFLOW · 6 STEPS · END-TO-END</h2>
+    <div id="flow"></div>
+  </div>
+
+  <div class="panel" id="detail">
+    <h2>NODE DETAILS</h2>
+    <h3 id="detailTitle">Select a node →</h3>
+    <div class="tool-chip" id="detailTool">—</div>
+    <div class="desc" id="detailDesc">Click any step on the left to see what it does, the tools it uses, and the live input/output payload.</div>
+
+    <div class="io-tabs">
+      <button class="active" data-tab="in">INPUT</button>
+      <button data-tab="out">OUTPUT</button>
+    </div>
+    <pre class="code" id="detailCode"><span class="c">// Pick a node to inspect →</span></pre>
+  </div>
+</div>
+
+<div class="metrics">
+  <div class="metric green"><div class="val" id="mTime">—</div><div class="lbl">RESPONSE TIME</div></div>
+  <div class="metric yellow"><div class="val" id="mConv">—</div><div class="lbl">CONVERSION LIFT</div></div>
+  <div class="metric blue"><div class="val" id="mDeals">—</div><div class="lbl">EXTRA DEALS / MO</div></div>
+  <div class="metric accent"><div class="val" id="mGCI">—</div><div class="lbl">GCI RECOVERED</div></div>
+</div>
+
+<footer>
+  <div>Molatech · <a href="mailto:info@molatech.org" style="color: var(--green); text-decoration: none;">info@molatech.org</a> · molatech.org</div>
+  <div class="stack">
+    <span class="chip">n8n</span>
+    <span class="chip">OpenAI</span>
+    <span class="chip">Twilio</span>
+    <span class="chip">Google Calendar</span>
+    <span class="chip">FollowUpBoss</span>
+    <span class="chip">Slack</span>
+  </div>
+</footer>
+
+<script>
+/* -----------------------------------------------------------
+ * Workflow nodes — each has: icon, title, tool, desc, input, output, duration (ms sim)
+ * ----------------------------------------------------------- */
+const nodes = [
+  {
+    id: "webhook",
+    icon: "📥",
+    title: "New lead — Website webhook",
+    sub: "Trigger: POST from listing form",
+    tool: "WEBHOOK · ZAPIER / N8N",
+    desc: "Lead submits the contact form on your listing page. The webhook fires instantly — no delay, no polling.",
+    dur: 180,
+    ms: "14ms",
+    input: {
+      source: "austinhomes.com/listings/2142-oak-street",
+      user_agent: "iPhone · Safari",
+      submitted_at: "2026-04-14T23:17:04.122Z"
+    },
+    output: {
+      event: "lead.created",
+      lead_id: "ld_8d2b9c14",
+      name: "Sarah Chen",
+      phone: "+15125550142",
+      email: "sarah.chen@gmail.com",
+      message: "Hey — is 2142 Oak still available? Looking to see it this week.",
+      listing: { mls_id: "AUS-2142OAK", price: 725000, beds: 4, baths: 3 }
+    }
+  },
+  {
+    id: "ai",
+    icon: "🧠",
+    title: "AI qualify + draft reply",
+    sub: "Intent, budget, timeline extraction",
+    tool: "OPENAI · GPT-4o",
+    desc: "The lead message is parsed with GPT-4o. It extracts intent (buyer/seller/renter), timeline (hot/warm/cold), preferred tone, and drafts a personalised reply.",
+    dur: 650,
+    ms: "640ms",
+    input: { lead_id: "ld_8d2b9c14", message: "Hey — is 2142 Oak still available? Looking to see it this week." },
+    output: {
+      intent: "showing_request",
+      temperature: "HOT",
+      timeline: "this_week",
+      qualified: true,
+      draft_reply: "Hi Sarah! 👋 Yes, 2142 Oak is still available. I have Tue 2pm or Wed 4pm open for a showing — which works?",
+      suggested_slots: ["2026-04-14T14:00:00-05:00", "2026-04-15T16:00:00-05:00"]
+    }
+  },
+  {
+    id: "sms",
+    icon: "💬",
+    title: "Send SMS reply",
+    sub: "Personalised, <60s from submission",
+    tool: "TWILIO · SMS",
+    desc: "The drafted reply is sent via Twilio from your business line. Sarah gets it on her phone within 14 seconds of submitting the form.",
+    dur: 280,
+    ms: "268ms",
+    input: {
+      to: "+15125550142",
+      from: "+15125557788",
+      body: "Hi Sarah! 👋 Yes, 2142 Oak is still available. I have Tue 2pm or Wed 4pm open for a showing — which works?"
+    },
+    output: {
+      sid: "SM9f18abe8...",
+      status: "delivered",
+      delivered_at: "2026-04-14T23:17:18.411Z",
+      elapsed_since_lead: "14.3s"
+    }
+  },
+  {
+    id: "cal",
+    icon: "📅",
+    title: "Book showing on calendar",
+    sub: "Reads agent availability · auto-books",
+    tool: "GOOGLE CALENDAR API",
+    desc: "Once Sarah replies with her preferred slot, the event is created on the assigned agent's calendar. An invite is sent to Sarah automatically.",
+    dur: 340,
+    ms: "321ms",
+    input: {
+      agent: "mike.reyes@austinhomes.com",
+      attendee: "sarah.chen@gmail.com",
+      slot: "2026-04-14T14:00:00-05:00",
+      property: "2142 Oak Street, Austin TX"
+    },
+    output: {
+      event_id: "evt_77b1c9fa",
+      summary: "Showing · 2142 Oak · Sarah Chen",
+      start: "2026-04-14T14:00:00-05:00",
+      end: "2026-04-14T14:30:00-05:00",
+      conference_url: "https://meet.google.com/abc-defg-hij",
+      invite_sent: true
+    }
+  },
+  {
+    id: "crm",
+    icon: "📇",
+    title: "Push to CRM",
+    sub: "Create contact, tag, log activity",
+    tool: "FOLLOWUPBOSS API",
+    desc: "Contact is created (or matched) in FollowUpBoss. Tags applied, source tracked, activity timeline updated, assigned to the right agent based on geo + price band.",
+    dur: 410,
+    ms: "398ms",
+    input: {
+      person: { first: "Sarah", last: "Chen", phones: ["+15125550142"], emails: ["sarah.chen@gmail.com"] },
+      source: "Website — austinhomes.com",
+      tags: ["HOT", "WEBSITE", "2142_OAK", "SHOWING_BOOKED"],
+      assigned_agent: "mike.reyes@austinhomes.com"
+    },
+    output: {
+      person_id: 9128431,
+      created: true,
+      agent_notified: true,
+      timeline_events: [
+        "Lead captured (Website)",
+        "SMS auto-reply · 14s",
+        "Showing booked · Tue 2pm",
+        "Agent Mike Reyes assigned"
+      ]
+    }
+  },
+  {
+    id: "notify",
+    icon: "🔔",
+    title: "Notify agent",
+    sub: "SMS + Slack ping with lead brief",
+    tool: "SLACK · TWILIO",
+    desc: "Agent Mike gets a Slack ping + SMS with the full lead brief and a link to the FUB profile. He shows up to the 2pm showing knowing exactly who Sarah is.",
+    dur: 220,
+    ms: "205ms",
+    input: {
+      agent: "mike.reyes@austinhomes.com",
+      channels: ["slack:#agent-mike", "sms:+15125559977"],
+      brief: "New HOT lead: Sarah Chen · 2142 Oak · Tue 2pm · Pre-approved, buyer agent assigned"
+    },
+    output: {
+      slack_ts: "1712981832.005100",
+      sms_sid: "SMa01bc...",
+      notified_at: "2026-04-14T23:17:19.998Z",
+      total_workflow_elapsed: "17.8 seconds"
+    }
+  }
+];
+
+/* -----------------------------------------------------------
+ * Render flow
+ * ----------------------------------------------------------- */
+const flow = document.getElementById("flow");
+nodes.forEach((n, i) => {
+  const div = document.createElement("div");
+  div.className = "node";
+  div.dataset.id = n.id;
+  div.innerHTML = `
+    <div class="icon">${n.icon}</div>
+    <div>
+      <div class="title">${n.title}</div>
+      <div class="sub">${n.sub}</div>
+      <div class="tool">${n.tool}</div>
+    </div>
+    <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
+      <div class="ms">${n.ms}</div>
+      <div class="check">✓</div>
+    </div>
+  `;
+  div.addEventListener("click", () => selectNode(n.id));
+  flow.appendChild(div);
+  if (i < nodes.length - 1) {
+    const arrow = document.createElement("div");
+    arrow.className = "arrow";
+    arrow.textContent = "↓";
+    flow.appendChild(arrow);
+  }
+});
+
+/* -----------------------------------------------------------
+ * Detail panel
+ * ----------------------------------------------------------- */
+let currentTab = "in";
+let currentNodeId = null;
+
+function syntaxJSON(obj) {
+  const json = JSON.stringify(obj, null, 2);
+  return json
+    .replace(/(&|<|>)/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]))
+    .replace(/"([^"]+)":/g, '<span class="k">"$1"</span>:')
+    .replace(/: "([^"]*)"/g, ': <span class="s">"$1"</span>')
+    .replace(/: (true|false|null|-?\d+\.?\d*)/g, ': <span class="n">$1</span>');
+}
+
+function selectNode(id) {
+  currentNodeId = id;
+  const n = nodes.find(x => x.id === id);
+  document.querySelectorAll(".node").forEach(el => el.classList.toggle("active", el.dataset.id === id));
+  document.getElementById("detailTitle").textContent = n.title;
+  document.getElementById("detailTool").textContent = n.tool;
+  document.getElementById("detailDesc").textContent = n.desc;
+  renderTab();
+}
+
+function renderTab() {
+  const n = nodes.find(x => x.id === currentNodeId);
+  if (!n) return;
+  const payload = currentTab === "in" ? n.input : n.output;
+  document.getElementById("detailCode").innerHTML = syntaxJSON(payload);
+}
+
+document.querySelectorAll(".io-tabs button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".io-tabs button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentTab = btn.dataset.tab;
+    renderTab();
+  });
+});
+
+/* -----------------------------------------------------------
+ * Run-workflow simulation
+ * ----------------------------------------------------------- */
+const runBtn = document.getElementById("runBtn");
+const resetBtn = document.getElementById("resetBtn");
+const toolbar = document.getElementById("toolbar");
+const statusText = document.getElementById("statusText");
+
+function setMetrics({ time, conv, deals, gci } = {}) {
+  document.getElementById("mTime").textContent = time ?? "—";
+  document.getElementById("mConv").textContent = conv ?? "—";
+  document.getElementById("mDeals").textContent = deals ?? "—";
+  document.getElementById("mGCI").textContent = gci ?? "—";
+}
+
+function reset() {
+  document.querySelectorAll(".node").forEach(el => el.classList.remove("running", "done", "active"));
+  toolbar.classList.remove("running");
+  statusText.textContent = "Idle — waiting for lead";
+  setMetrics();
+  currentNodeId = null;
+  document.getElementById("detailTitle").textContent = "Select a node →";
+  document.getElementById("detailTool").textContent = "—";
+  document.getElementById("detailDesc").textContent = "Click any step on the left to see what it does, the tools it uses, and the live input/output payload.";
+  document.getElementById("detailCode").innerHTML = '<span class="c">// Pick a node to inspect →</span>';
+}
+
+async function runWorkflow() {
+  reset();
+  toolbar.classList.add("running");
+  const nodeEls = [...document.querySelectorAll(".node")];
+  let totalMs = 0;
+  for (let i = 0; i < nodes.length; i++) {
+    const n = nodes[i];
+    const el = nodeEls[i];
+    statusText.textContent = `Running · ${n.title}`;
+    el.classList.add("running");
+    selectNode(n.id);
+    await new Promise(r => setTimeout(r, n.dur));
+    el.classList.remove("running");
+    el.classList.add("done");
+    totalMs += parseInt(n.ms);
+  }
+  toolbar.classList.remove("running");
+  statusText.textContent = `✅ Completed end-to-end in ${(totalMs / 1000).toFixed(1)}s — showing booked, CRM updated, agent notified.`;
+  // Animate metrics
+  animateCount("mTime", 0, 17.8, 900, v => v.toFixed(1) + "s");
+  setTimeout(() => animateCount("mConv", 1, 100, 900, v => Math.round(v) + "×"), 200);
+  setTimeout(() => document.getElementById("mDeals").textContent = "1–2", 1100);
+  setTimeout(() => document.getElementById("mGCI").textContent = "$8K–$15K", 1300);
+}
+
+function animateCount(id, from, to, dur, fmt) {
+  const el = document.getElementById(id);
+  const start = performance.now();
+  function step(t) {
+    const p = Math.min((t - start) / dur, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    const v = from + (to - from) * e;
+    el.textContent = fmt(v);
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+runBtn.addEventListener("click", runWorkflow);
+resetBtn.addEventListener("click", reset);
+
+// Start with first node selected for orientation
+selectNode("webhook");
+</script>
+</body>
+</html>

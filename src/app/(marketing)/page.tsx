@@ -2,20 +2,19 @@ import { AnimationContainer, MaxWidthWrapper, PricingCards } from "@/components"
 import { BentoCard, BentoGrid, CARDS } from "@/components/ui/bento-grid";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { LampContainer } from "@/components/ui/lamp";
+import AnimatedIcon from "@/components/gsap/animated-icon";
+import { FlipWords } from "@/components/ui/aceternity/flip-words";
 import MagicBadge from "@/components/ui/magic-badge";
 import MagicCard from "@/components/ui/magic-card";
-import { COMPANIES, PROCESS } from "@/utils";
-import { REVIEWS } from "@/utils/constants/misc";
-import { currentUser } from "@clerk/nextjs/server";
-import { ArrowRightIcon, CreditCardIcon, StarIcon } from "lucide-react";
+import { PROCESS } from "@/utils";
+import { ArrowRightIcon, ShieldCheckIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-const HomePage = async () => {
+const FRAMEWORKS = ["SOC 2", "ISO 27001", "NIST CSF", "HIPAA", "GDPR", "CIS Controls"];
 
-    const user = await currentUser();
+const HomePage = () => {
 
     return (
         <div className="overflow-x-hidden scrollbar-hide size-full">
@@ -30,25 +29,32 @@ const HomePage = async () => {
                             <span className="backdrop absolute inset-[1px] rounded-full bg-neutral-950 transition-colors duration-200 group-hover:bg-neutral-900" />
                             <span className="h-full w-full blur-md absolute bottom-0 inset-x-0 bg-gradient-to-tr from-primary/20"></span>
                             <span className="z-10 py-0.5 text-sm text-neutral-100 flex items-center justify-center gap-1">
-                                ✨ Manage links smarter
+                                Build. Secure. Automate.
                                 <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
                             </span>
                         </button>
                         <h1 className="text-foreground text-center py-6 text-5xl font-medium tracking-normal text-balance sm:text-6xl md:text-7xl lg:text-8xl !leading-[1.15] w-full font-heading">
-                            Smart Links with <span className="text-transparent bg-gradient-to-r from-violet-500 to-fuchsia-500 bg-clip-text inline-bloc">
-                                Precision
-                            </span>
+                            Senior Security &amp; Engineering,{" "}
+                            <FlipWords
+                                words={["Fixed Scope", "Audit-Ready", "Senior-Led", "Evidence-First"]}
+                                className="!px-0 text-blue-600"
+                            />
                         </h1>
                         <p className="mb-12 text-lg tracking-tight text-muted-foreground md:text-xl text-balance">
-                            Effortlessly streamline your link management with Linkify.
+                            Senior security and engineering outcomes for mid-market companies.
                             <br className="hidden md:block" />
-                            <span className="hidden md:block">Shorten, track, and organize all your links in one place.</span>
+                            <span className="hidden md:block">Fixed scope, audit-ready evidence, no surprise invoices.</span>
                         </p>
                         <div className="flex items-center justify-center whitespace-nowrap gap-4 z-50">
-                            <Button asChild>
-                                <Link href={user ? "/dashboard" : "/auth/sign-in"} className="flex items-center">
-                                    Start creating for free
+                            <Button asChild className="bg-emerald-500 hover:bg-emerald-600 text-white">
+                                <Link href="/book" className="flex items-center">
+                                    Book a call
                                     <ArrowRightIcon className="w-4 h-4 ml-2" />
+                                </Link>
+                            </Button>
+                            <Button asChild variant="outline">
+                                <Link href="/services" className="flex items-center">
+                                    Explore services
                                 </Link>
                             </Button>
                         </div>
@@ -63,10 +69,10 @@ const HomePage = async () => {
                                 delay={9}
                             />
                             <Image
-                                src="/assets/dashboard-dark.svg"
-                                alt="Dashboard"
+                                src="/financial-dashboard-kokonut.png"
+                                alt="MolaTech project dashboard"
                                 width={1200}
-                                height={1200}
+                                height={511}
                                 quality={100}
                                 className="rounded-md lg:rounded-xl bg-foreground/10 ring-1 ring-border"
                             />
@@ -82,21 +88,15 @@ const HomePage = async () => {
                 <AnimationContainer delay={0.4}>
                     <div className="py-14">
                         <div className="mx-auto px-4 md:px-8">
-                            <h2 className="text-center text-sm font-medium font-heading text-neutral-400 uppercase">
-                                Trusted by the best in the industry
+                            <h2 className="text-center text-sm font-medium font-heading text-muted-foreground uppercase">
+                                Frameworks we deliver against
                             </h2>
                             <div className="mt-8">
-                                <ul className="flex flex-wrap items-center gap-x-6 gap-y-6 md:gap-x-16 justify-center">
-                                    {COMPANIES.map((company) => (
-                                        <li key={company.name}>
-                                            <Image
-                                                src={company.logo}
-                                                alt={company.name}
-                                                width={80}
-                                                height={80}
-                                                quality={100}
-                                                className="w-28 h-auto"
-                                            />
+                                <ul className="flex flex-wrap items-center gap-x-4 gap-y-4 md:gap-x-8 justify-center">
+                                    {FRAMEWORKS.map((framework) => (
+                                        <li key={framework} className="flex items-center gap-2 px-4 py-2 rounded-full border border-border text-foreground font-medium">
+                                            <ShieldCheckIcon className="w-4 h-4 text-blue-600" />
+                                            {framework}
                                         </li>
                                     ))}
                                 </ul>
@@ -110,12 +110,12 @@ const HomePage = async () => {
             <MaxWidthWrapper className="pt-10">
                 <AnimationContainer delay={0.1}>
                     <div className="flex flex-col w-full items-center lg:items-center justify-center py-8">
-                        <MagicBadge title="Features" />
+                        <MagicBadge title="Services" />
                         <h2 className="text-center lg:text-center text-3xl md:text-5xl !leading-[1.1] font-medium font-heading text-foreground mt-6">
-                            Manage Links Like a Pro
+                            One vendor. Three service lines.
                         </h2>
                         <p className="mt-4 text-center lg:text-center text-lg text-muted-foreground max-w-lg">
-                            Linkify is a powerful link management tool that helps you shorten, track, and organize all your links in one place.
+                            Cybersecurity &amp; GRC, engineering, and AI automation — delivered by senior hands as fixed-scope outcomes, not open-ended hours.
                         </p>
                     </div>
                 </AnimationContainer>
@@ -134,10 +134,10 @@ const HomePage = async () => {
                     <div className="flex flex-col items-center lg:items-center justify-center w-full py-8 max-w-xl mx-auto">
                         <MagicBadge title="The Process" />
                         <h2 className="text-center lg:text-center text-3xl md:text-5xl !leading-[1.1] font-medium font-heading text-foreground mt-6">
-                            Effortless link management in 3 steps
+                            How an engagement runs
                         </h2>
                         <p className="mt-4 text-center lg:text-center text-lg text-muted-foreground max-w-lg">
-                            Follow these simple steps to optimize, organize, and share your links with ease.
+                            Discover, remediate, evidence — every deliverable has a named owner, an exit criterion, and a date.
                         </p>
                     </div>
                 </AnimationContainer>
@@ -146,7 +146,9 @@ const HomePage = async () => {
                         <AnimationContainer delay={0.2 * id} key={id}>
                             <MagicCard className="group md:py-8">
                                 <div className="flex flex-col items-start justify-center w-full">
-                                    <process.icon strokeWidth={1.5} className="w-10 h-10 text-foreground" />
+                                    <AnimatedIcon>
+                                        <process.icon strokeWidth={1.5} className="w-10 h-10 text-foreground" />
+                                    </AnimatedIcon>
                                     <div className="flex flex-col relative items-start">
                                         <span className="absolute -top-6 right-0 border-2 border-border text-foreground font-medium text-2xl rounded-full w-12 h-12 flex items-center justify-center pt-0.5">
                                             {id + 1}
@@ -169,12 +171,12 @@ const HomePage = async () => {
             <MaxWidthWrapper className="py-10">
                 <AnimationContainer delay={0.1}>
                     <div className="flex flex-col items-center lg:items-center justify-center w-full py-8 max-w-xl mx-auto">
-                        <MagicBadge title="Simple Pricing" />
+                        <MagicBadge title="Pricing" />
                         <h2 className="text-center lg:text-center text-3xl md:text-5xl !leading-[1.1] font-medium font-heading text-foreground mt-6">
-                            Choose a plan that works for you
+                            Fixed scope. Fixed price.
                         </h2>
                         <p className="mt-4 text-center lg:text-center text-lg text-muted-foreground max-w-lg">
-                            Get started with Linkify today and enjoy more features with our pro plans.
+                            You know the number before we start. Scope changes are written, priced, and agreed — never discovered on an invoice.
                         </p>
                     </div>
                 </AnimationContainer>
@@ -184,114 +186,13 @@ const HomePage = async () => {
                 <AnimationContainer delay={0.3}>
                     <div className="flex flex-wrap items-start md:items-center justify-center lg:justify-evenly gap-6 mt-12 max-w-5xl mx-auto w-full">
                         <div className="flex items-center gap-2">
-                            <CreditCardIcon className="w-5 h-5 text-foreground" />
+                            <ShieldCheckIcon className="w-5 h-5 text-emerald-500" />
                             <span className="text-muted-foreground">
-                                No credit card required
+                                Senior hands only — the person on the proposal is the person doing the work
                             </span>
                         </div>
                     </div>
                 </AnimationContainer>
-            </MaxWidthWrapper>
-
-            {/* Reviews Section */}
-            <MaxWidthWrapper className="py-10">
-                <AnimationContainer delay={0.1}>
-                    <div className="flex flex-col items-center lg:items-center justify-center w-full py-8 max-w-xl mx-auto">
-                        <MagicBadge title="Our Customers" />
-                        <h2 className="text-center lg:text-center text-3xl md:text-5xl !leading-[1.1] font-medium font-heading text-foreground mt-6">
-                            What our users are saying
-                        </h2>
-                        <p className="mt-4 text-center lg:text-center text-lg text-muted-foreground max-w-lg">
-                            Here&apos;s what some of our users have to say about Linkify.
-                        </p>
-                    </div>
-                </AnimationContainer>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-start gap-4 md:gap-8 py-10">
-                    <div className="flex flex-col items-start h-min gap-6">
-                        {REVIEWS.slice(0, 3).map((review, index) => (
-                            <AnimationContainer delay={0.2 * index} key={index}>
-                                <MagicCard key={index} className="md:p-0">
-                                    <Card className="flex flex-col w-full border-none h-min">
-                                        <CardHeader className="space-y-0">
-                                            <CardTitle className="text-lg font-medium text-muted-foreground">
-                                                {review.name}
-                                            </CardTitle>
-                                            <CardDescription>
-                                                {review.username}
-                                            </CardDescription>
-                                        </CardHeader>
-                                        <CardContent className="space-y-4 pb-4">
-                                            <p className="text-muted-foreground">
-                                                {review.review}
-                                            </p>
-                                        </CardContent>
-                                        <CardFooter className="w-full space-x-1 mt-auto">
-                                            {Array.from({ length: review.rating }, (_, i) => (
-                                                <StarIcon key={i} className="w-4 h-4 fill-yellow-500 text-yellow-500" />
-                                            ))}
-                                        </CardFooter>
-                                    </Card>
-                                </MagicCard>
-                            </AnimationContainer>
-                        ))}
-                    </div>
-                    <div className="flex flex-col items-start h-min gap-6">
-                        {REVIEWS.slice(3, 6).map((review, index) => (
-                            <AnimationContainer delay={0.2 * index} key={index}>
-                                <MagicCard key={index} className="md:p-0">
-                                    <Card className="flex flex-col w-full border-none h-min">
-                                        <CardHeader className="space-y-0">
-                                            <CardTitle className="text-lg font-medium text-muted-foreground">
-                                                {review.name}
-                                            </CardTitle>
-                                            <CardDescription>
-                                                {review.username}
-                                            </CardDescription>
-                                        </CardHeader>
-                                        <CardContent className="space-y-4 pb-4">
-                                            <p className="text-muted-foreground">
-                                                {review.review}
-                                            </p>
-                                        </CardContent>
-                                        <CardFooter className="w-full space-x-1 mt-auto">
-                                            {Array.from({ length: review.rating }, (_, i) => (
-                                                <StarIcon key={i} className="w-4 h-4 fill-yellow-500 text-yellow-500" />
-                                            ))}
-                                        </CardFooter>
-                                    </Card>
-                                </MagicCard>
-                            </AnimationContainer>
-                        ))}
-                    </div>
-                    <div className="flex flex-col items-start h-min gap-6">
-                        {REVIEWS.slice(6, 9).map((review, index) => (
-                            <AnimationContainer delay={0.2 * index} key={index}>
-                                <MagicCard key={index} className="md:p-0">
-                                    <Card className="flex flex-col w-full border-none h-min">
-                                        <CardHeader className="space-y-0">
-                                            <CardTitle className="text-lg font-medium text-muted-foreground">
-                                                {review.name}
-                                            </CardTitle>
-                                            <CardDescription>
-                                                {review.username}
-                                            </CardDescription>
-                                        </CardHeader>
-                                        <CardContent className="space-y-4 pb-4">
-                                            <p className="text-muted-foreground">
-                                                {review.review}
-                                            </p>
-                                        </CardContent>
-                                        <CardFooter className="w-full space-x-1 mt-auto">
-                                            {Array.from({ length: review.rating }, (_, i) => (
-                                                <StarIcon key={i} className="w-4 h-4 fill-yellow-500 text-yellow-500" />
-                                            ))}
-                                        </CardFooter>
-                                    </Card>
-                                </MagicCard>
-                            </AnimationContainer>
-                        ))}
-                    </div>
-                </div>
             </MaxWidthWrapper>
 
             {/* CTA Section */}
@@ -299,16 +200,18 @@ const HomePage = async () => {
                 <AnimationContainer delay={0.1}>
                     <LampContainer>
                         <div className="flex flex-col items-center justify-center relative w-full text-center">
-                            <h2 className="bg-gradient-to-b from-neutral-200 to-neutral-400 py-4 bg-clip-text text-center text-4xl md:text-7xl !leading-[1.15] font-medium font-heading tracking-tight text-transparent mt-8">
-                                Step into the future of link management
+                            <h2 className="bg-gradient-to-b from-slate-900 to-slate-600 py-4 bg-clip-text text-center text-4xl md:text-7xl !leading-[1.15] font-medium font-heading tracking-tight text-transparent mt-8">
+                                The controls exist. The evidence doesn&apos;t.
                             </h2>
                             <p className="text-muted-foreground mt-6 max-w-md mx-auto">
-                                Experience the cutting-edge solution that transforms how you handle your links. Elevate your online presence with our next-gen platform.
+                                We fix that. First findings inside two weeks, responses inside one business day, and an audit-ready evidence pack at the end.
                             </p>
                             <div className="mt-6">
-                                <Button>
-                                    Get started for free
-                                    <ArrowRightIcon className="w-4 h-4 ml-2" />
+                                <Button asChild className="bg-emerald-500 hover:bg-emerald-600 text-white">
+                                    <Link href="/book" className="flex items-center">
+                                        Book a call
+                                        <ArrowRightIcon className="w-4 h-4 ml-2" />
+                                    </Link>
                                 </Button>
                             </div>
                         </div>

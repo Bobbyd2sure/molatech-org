@@ -2,39 +2,40 @@ import { buttonVariants } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { cn } from "@/utils";
-import { ArrowRightIcon, CalendarIcon, Link2Icon, SearchIcon, WaypointsIcon } from "lucide-react";
+import { ArrowRightIcon, CalendarIcon, SearchIcon, ShieldCheckIcon, WaypointsIcon } from "lucide-react";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./card";
 import { Input } from "./input";
 import { Integrations } from "./integrations";
 import { Label } from "./label";
+import AnimatedIcon from "@/components/gsap/animated-icon";
 
 export const CARDS = [
     {
-        Icon: Link2Icon,
-        name: "Shorten links",
-        description: "Create short links that are easy to remember and share.",
-        href: "#",
+        Icon: ShieldCheckIcon,
+        name: "Cybersecurity & GRC",
+        description: "SOC 2, ISO 27001, and NIST assessments that end in audit-ready evidence — not a slide deck.",
+        href: "/features/cybersecurity",
         cta: "Learn more",
         className: "col-span-3 lg:col-span-1",
         background: (
             <Card className="absolute top-10 left-10 origin-top rounded-none rounded-tl-md transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_0%,#000_100%)] group-hover:scale-105 border border-border border-r-0">
                 <CardHeader>
                     <CardTitle>
-                        Create short links
+                        Request an assessment
                     </CardTitle>
                     <CardDescription>
-                        Create short links that are easy to remember and share.
+                        Tell us your stack and target framework — we scope it fixed-price.
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="-mt-4">
                     <Label>
-                        Paste your link
+                        Your stack
                     </Label>
                     <Input
                         type="text"
-                        placeholder="Paste your link here..."
+                        placeholder="AWS, GitHub, Okta, Google Workspace..."
                         className="w-full focus-visible:ring-0 focus-visible:ring-transparent"
                     />
                 </CardContent>
@@ -43,30 +44,30 @@ export const CARDS = [
     },
     {
         Icon: SearchIcon,
-        name: "Search your links",
-        description: "Quickly find the links you need with AI-powered search.",
-        href: "#",
+        name: "Findings you can act on",
+        description: "Every issue lands in a findings register with severity, owner, and exit criterion.",
+        href: "/features/cybersecurity",
         cta: "Learn more",
         className: "col-span-3 lg:col-span-2",
         background: (
             <Command className="absolute right-10 top-10 w-[70%] origin-to translate-x-0 border border-border transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] group-hover:-translate-x-10 p-2">
-                <Input placeholder="Type to search..." />
+                <Input placeholder="Search findings..." />
                 <div className="mt-1 cursor-pointer">
-                    <div className="px-4 py-2 hover:bg-muted rounded-md">linkify.io/hdf00c</div>
-                    <div className="px-4 py-2 hover:bg-muted rounded-md">linkify.io/sdv0n0</div>
-                    <div className="px-4 py-2 hover:bg-muted rounded-md">linkify.io/03gndo</div>
-                    <div className="px-4 py-2 hover:bg-muted rounded-md">linkify.io/09vmmw</div>
-                    <div className="px-4 py-2 hover:bg-muted rounded-md">linkify.io/s09vws</div>
-                    <div className="px-4 py-2 hover:bg-muted rounded-md">linkify.io/sd8fv5</div>
+                    <div className="px-4 py-2 hover:bg-muted rounded-md">C-1 · MFA not enforced on admin accounts</div>
+                    <div className="px-4 py-2 hover:bg-muted rounded-md">H-1 · No vendor risk register</div>
+                    <div className="px-4 py-2 hover:bg-muted rounded-md">H-2 · Offboarding has no access-revocation step</div>
+                    <div className="px-4 py-2 hover:bg-muted rounded-md">M-1 · Logs retained 7 days, policy says 90</div>
+                    <div className="px-4 py-2 hover:bg-muted rounded-md">M-2 · S3 buckets without encryption-at-rest</div>
+                    <div className="px-4 py-2 hover:bg-muted rounded-md">+ · SSO enforced across core SaaS</div>
                 </div>
             </Command>
         ),
     },
     {
         Icon: WaypointsIcon,
-        name: "Connect your apps",
-        description: "Integrate with your favorite apps and services.",
-        href: "#",
+        name: "We build and automate in your stack",
+        description: "Web, cloud, and AI automation — delivered in the tools you already run.",
+        href: "/features/automation",
         cta: "Learn more",
         className: "col-span-3 lg:col-span-2 max-w-full overflow-hidden",
         background: (
@@ -75,10 +76,10 @@ export const CARDS = [
     },
     {
         Icon: CalendarIcon,
-        name: "Calendar",
-        description: "Keep track of your links with our calendar view.",
+        name: "Fixed timelines",
+        description: "First findings inside two weeks. Every milestone has an owner and a date.",
         className: "col-span-3 lg:col-span-1",
-        href: "#",
+        href: "/pricing",
         cta: "Learn more",
         background: (
             <Calendar
@@ -130,17 +131,19 @@ const BentoCard = ({
         key={name}
         className={cn(
             "group relative col-span-3 flex flex-col justify-between border border-border/60 overflow-hidden rounded-xl",
-            "bg-black [box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
+            "bg-white [box-shadow:0_4px_24px_-8px_rgba(15,23,42,0.08)]",
             className,
         )}
     >
         <div>{background}</div>
         <div className="pointer-events-none z-10 flex flex-col gap-1 p-6 transition-all duration-300 group-hover:-translate-y-10">
-            <Icon className="h-12 w-12 origin-left text-neutral-700 transition-all duration-300 ease-in-out group-hover:scale-75" />
-            <h3 className="text-xl font-semibold text-neutral-300">
+            <AnimatedIcon>
+                <Icon className="h-12 w-12 origin-left text-blue-600 transition-all duration-300 ease-in-out group-hover:scale-75" />
+            </AnimatedIcon>
+            <h3 className="text-xl font-semibold text-foreground">
                 {name}
             </h3>
-            <p className="max-w-lg text-neutral-400">{description}</p>
+            <p className="max-w-lg text-muted-foreground">{description}</p>
         </div>
 
         <div
