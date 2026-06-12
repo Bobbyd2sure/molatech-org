@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
+import { sendNotification } from "@/lib/mailer"
 import { createServerSupabaseClient, isSupabaseConfigured } from "@/lib/supabase"
 
 // Rate limiting: Simple in-memory store (for production, use Redis)
@@ -122,29 +123,24 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Optional: Send email notification using Resend
-    /*
-    if (process.env.RESEND_API_KEY) {
-      const { Resend } = await import('resend')
-      const resend = new Resend(process.env.RESEND_API_KEY)
-
-      await resend.emails.send({
-        from: 'MolaTech Contact <contact@molatech.org>',
-        to: ['info@molatech.org'],
-        subject: `[Contact Form] ${sanitizedData.subject} - ${sanitizedData.first_name} ${sanitizedData.last_name}`,
-        html: `
+    // Email notification to info@molatech.org (best-effort — DB write already succeeded)
+    try {
+      await sendNotification(
+        `[Contact Form] ${sanitizedData.subject} - ${sanitizedData.first_name} ${sanitizedData.last_name}`,
+        `
           <h2>New Contact Form Submission</h2>
           <p><strong>Name:</strong> ${sanitizedData.first_name} ${sanitizedData.last_name}</p>
           <p><strong>Email:</strong> ${sanitizedData.email}</p>
-          <p><strong>Phone:</strong> ${sanitizedData.phone || 'Not provided'}</p>
+          <p><strong>Phone:</strong> ${sanitizedData.phone || "Not provided"}</p>
           <p><strong>Subject:</strong> ${sanitizedData.subject}</p>
           <hr />
           <p><strong>Message:</strong></p>
-          <p>${sanitizedData.message.replace(/\n/g, '<br />')}</p>
+          <p>${sanitizedData.message.replace(/\n/g, "<br />")}</p>
         `,
-      })
+      )
+    } catch (mailError) {
+      console.error("Contact notification email failed:", mailError)
     }
-    */
 
     return NextResponse.json(
       {

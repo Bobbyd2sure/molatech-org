@@ -4,10 +4,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Clock, Video, Phone } from "lucide-react"
 import BookHero from "./_hero"
 
-const BookingCalendar = dynamic(() => import("@/components/booking-calendar"), {
+// Cal.com embed is parked until the molatech Cal.com account exists
+// (cal.com/molatech/consultation currently 404s). The request form below
+// emails info@molatech.org and stores the message — swap back to
+// "@/components/booking-calendar" once the Cal link is live.
+const ContactForm = dynamic(() => import("@/components/services/contact-form"), {
   loading: () => (
-    <div className="h-[600px] flex items-center justify-center">
-      <p className="text-muted-foreground">Loading calendar...</p>
+    <div className="h-[400px] flex items-center justify-center">
+      <p className="text-muted-foreground">Loading form...</p>
     </div>
   ),
 })
@@ -83,15 +87,13 @@ export default function BookingPage() {
           <div className="max-w-4xl mx-auto">
             <Card>
               <CardHeader className="text-center">
-                <CardTitle>Select a Time</CardTitle>
+                <CardTitle>Request Your Slot</CardTitle>
                 <CardDescription>
-                  Choose a convenient time slot for your consultation
+                  Tell us what you want to cover and when suits you — we confirm within one business day.
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="min-h-[600px]">
-                  <BookingCalendar className="h-full" />
-                </div>
+                <ContactForm />
               </CardContent>
             </Card>
           </div>

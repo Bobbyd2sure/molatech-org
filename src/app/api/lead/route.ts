@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
+import { sendNotification } from "@/lib/mailer"
 import { getSupabaseClient } from "@/lib/supabase"
 import { getSession } from "@/lib/admin-auth"
 
@@ -108,6 +109,21 @@ export async function POST(request: NextRequest) {
       if (error) {
         console.error("Error updating lead:", error)
       }
+    }
+
+    // Email notification to info@molatech.org (best-effort)
+    try {
+      await sendNotification(
+        `[New Lead] ${name.trim()} — ${normalizedPhone}`,
+        `
+          <h2>New Lead Captured</h2>
+          <p><strong>Name:</strong> ${name.trim()}</p>
+          <p><strong>Phone:</strong> ${normalizedPhone}</p>
+          <p><strong>Source:</strong> ${source || "unknown"}</p>
+        `,
+      )
+    } catch (mailError) {
+      console.error("Lead notification email failed:", mailError)
     }
 
     return NextResponse.json({ success: true, message: "Lead captured successfully" })
